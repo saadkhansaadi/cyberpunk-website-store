@@ -893,9 +893,13 @@ html {
   border: 1px solid var(--border-light); color: var(--text-muted);
   cursor: pointer; transition: 0.3s; background: transparent;
 }
-.card-print .frame-opt:hover, .card-print .frame-opt.active {
-  border-color: var(--accent); color: var(--accent);
-  background: rgba(16,185,129,0.1);/* =========================
+ .card-print .frame-opt:hover, 
+.card-print .frame-opt.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(16,185,129,0.1);
+}
+  /* =========================
    FLOATING SUPPORT BUTTON
 ========================= */
 .support-trigger {
@@ -916,6 +920,7 @@ html {
   box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
   border: 1px solid rgba(255,255,255,0.1);
   transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: pulseGlow 2s infinite;
 }
 
 .support-trigger:hover {
@@ -926,11 +931,7 @@ html {
 .support-trigger i {
   font-size: 18px;
 }
-;
-}
-  0%, 100% { box-shadow: 0 0 0 0 rgba(139,92,246,0.4); }
-  50% { box-shadow: 0 0 12px 4px rgba(139,92,246,0.2); }
-}
+
 .card-service:hover {
   border-color: var(--primary) !important;
   box-shadow: 0 0 30px rgba(139,92,246,0.2), 0 20px 40px rgba(0,0,0,0.3);
@@ -1331,3 +1332,8 @@ html {
   background: #ef4444; box-shadow: 0 0 8px rgba(239,68,68,0.5);
   animation: pulse-badge 1.5s infinite;
 }
+
+  @keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(139,92,246,0.4); }
+  50% { box-shadow: 0 0 12px 4px rgba(139,92,246,0.2); }
+  }
