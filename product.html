@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulThread | Product Details</title>
+  <link rel="icon" type="image/svg+xml" href="Assets/favicon.svg">
+
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="CSS/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      max-width: 1200px;
+      margin: 100px auto;
+      padding: 0 20px;
+    }
+    .product-image-container { position: relative; overflow: hidden; border-radius: 20px; }
+    .product-image-container img {
+      width: 100%;
+      border-radius: 20px;
+      box-shadow: 0 0 40px rgba(139, 92, 246, 0.2);
+      cursor: zoom-in;
+      transition: transform 0.4s ease;
+    }
+    .product-image-container.zoomed img {
+      transform: scale(2);
+      cursor: zoom-out;
+    }
+    .size-btn {
+      background: transparent;
+      border: 1px solid var(--border-light);
+      color: var(--text-light);
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    .size-btn:hover, .size-btn.selected {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+    }
+    .frame-selector {
+      display: flex; gap: 10px; flex-wrap: wrap;
+    }
+    .frame-btn {
+      padding: 10px 18px; border-radius: 8px;
+      border: 1px solid var(--border-light);
+      background: transparent; color: var(--text-muted);
+      cursor: pointer; transition: 0.3s; font-size: 14px;
+    }
+    .frame-btn:hover, .frame-btn.selected {
+      border-color: var(--accent); color: var(--accent);
+      background: rgba(16,185,129,0.1);
+    }
+    @media (max-width: 900px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- DYNAMIC NAVBAR PLACEHOLDER -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- PRODUCT CONTAINER -->
+  <div id="product-container" style="min-height: 70vh;">
+    <div style="text-align: center; padding: 150px; color: var(--text-muted);">
+      <i class="fa-solid fa-spinner fa-spin fa-3x"></i>
+      <p style="margin-top: 20px;">Fetching Databank...</p>
+    </div>
+  </div>
+
+  <!-- RELATED PRODUCTS -->
+  <section class="section" id="related-section" style="display:none;">
+    <h2 class="section-title reveal">Related <span class="text-gradient">Gear</span></h2>
+    <div class="grid" id="related-grid"></div>
+  </section>
+
+  <!-- DYNAMIC FOOTER PLACEHOLDER -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="JS files/main.js"></script>
+  <script src="JS files/products.js"></script>
+  <script src="JS files/cart.js"></script>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const productId = urlParams.get('id');
+      const container = document.getElementById('product-container');
+
+      const product = getProductById(productId);
+
+      if (!product) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 150px;">
+            <h1 style="color: #ef4444; font-size: 48px;"><i class="fa-solid fa-triangle-exclamation"></i> 404</h1>
+            <h2>Asset Not Found</h2>
+            <p style="color: var(--text-muted); margin-bottom: 30px;">The requested item does not exist in our databanks.</p>
+            <a href="shop.html" class="btn-pro btn-outline">Return to Shop</a>
+          </div>`;
+        return;
+      }
+
+      // Update page title
+      document.title = `SoulThread | ${product.name}`;
+
+      // Sizes / Parameters
+      let sizesHTML = '';
+      if (product.sizes && product.product_type !== 'service') {
+        product.sizes.forEach((size, index) => {
+          sizesHTML += `<button class="size-btn ${index === 0 ? 'selected' : ''}" onclick="selectSize(this)">${size}</button>`;
+        });
+      }
+
+      // Frame selector for prints
+      let frameHTML = '';
+      if (product.frame_options) {
+        frameHTML = `<div style="margin-bottom:30px;">
+          <h4 style="margin-bottom:15px;color:var(--text-light);">Frame Option:</h4>
+          <div class="frame-selector">
+            ${product.frame_options.map((f, i) => `<button class="frame-btn ${i === 0 ? 'selected' : ''}" onclick="selectFrame(this)">${f}</button>`).join('')}
+          </div>
+        </div>`;
+      }
+
+      // Features
+      let featuresHTML = '';
+      product.features.forEach(feat => {
+        featuresHTML += `<li style="margin-bottom:10px;"><i class="fa-solid fa-check" style="color:var(--primary);margin-right:10px;"></i>${feat}</li>`;
+      });
+
+      // Digital art badges
+      let badgesHTML = '';
+      if (product.product_type === 'print' || product.product_type === 'service') {
+        badgesHTML = `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+          <span class="art-badge badge-digital"><i class="fa-solid fa-pen-nib"></i> Created Digitally</span>
+          ${product.resolution ? `<span class="art-badge badge-resolution">${product.resolution} · ${product.dpi}DPI</span>` : ''}
+          <span class="art-badge badge-color-profile"><i class="fa-solid fa-circle-half-stroke"></i> Adobe RGB</span>
+        </div>`;
+      }
+
+      // CTA
+      const priceDisplay = product.starting_price ? `From $${product.starting_price.toFixed(2)}` : `$${product.price.toFixed(2)}`;
+      const ctaText = product.product_type === 'service' ? 'REQUEST COMMISSION' : 'ADD TO CART';
+      const ctaAction = product.product_type === 'service'
+        ? `location.href='customize.html'`
+        : `addToCartDetailed('${product.id}', '${product.name}', ${product.price}, '${product.image}', '${product.product_type}')`;
+
+      container.innerHTML = `
+        <div class="product-grid reveal active">
+          <div class="product-image-container" onclick="this.classList.toggle('zoomed')">
+            <img src="${product.image}" alt="${product.name}">
+          </div>
+          <div class="product-details">
+            <span style="color:var(--primary);text-transform:uppercase;letter-spacing:2px;font-size:14px;font-weight:bold;">${product.category}</span>
+            <h1 style="font-size:42px;margin:10px 0;">${product.name}</h1>
+            ${badgesHTML}
+            <p style="font-size:32px;color:var(--text-light);font-weight:300;margin-bottom:25px;">${priceDisplay}</p>
+            <p style="color:var(--text-muted);line-height:1.6;font-size:16px;margin-bottom:30px;">${product.description}</p>
+
+            ${sizesHTML ? `<div style="margin-bottom:30px;">
+              <h4 style="margin-bottom:15px;color:var(--text-light);">Select Parameters:</h4>
+              <div style="display:flex;gap:15px;flex-wrap:wrap;" id="size-selector">${sizesHTML}</div>
+            </div>` : ''}
+
+            ${frameHTML}
+
+            <button class="btn-pro btn-glow" style="width:100%;padding:20px;font-size:18px;margin-bottom:40px;" onclick="${ctaAction}">
+              <i class="fa-solid fa-cart-plus" style="margin-right:10px;"></i> ${ctaText}
+            </button>
+
+            <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:30px;">
+              <h4 style="margin-bottom:15px;">Specifications</h4>
+              <ul style="list-style:none;padding:0;color:var(--text-muted);">${featuresHTML}</ul>
+            </div>
+          </div>
+        </div>`;
+
+      // Render related products
+      renderRelated(product);
+    });
+
+    function selectSize(btn) {
+      document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    function selectFrame(btn) {
+      document.querySelectorAll('.frame-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+    }
+
+    function addToCartDetailed(id, name, price, image, productType) {
+      const selectedSizeBtn = document.querySelector('.size-btn.selected');
+      const size = selectedSizeBtn ? selectedSizeBtn.innerText : '';
+      const itemName = size && size !== 'One Size' && size !== 'Digital Delivery' ? `${name} - ${size}` : name;
+
+      let cart = JSON.parse(localStorage.getItem('soulthread_cart')) || [];
+      const existingItem = cart.find(item => item.name === itemName);
+
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ id, name: itemName, price, quantity: 1, image, product_type: productType });
+      }
+
+      localStorage.setItem('soulthread_cart', JSON.stringify(cart));
+      updateCartCountUI();
+      showToast(`${itemName} added to cart!`, 'success');
+    }
+
+    function renderRelated(product) {
+      const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+      if (related.length === 0) return;
+
+      document.getElementById('related-section').style.display = 'block';
+      const grid = document.getElementById('related-grid');
+      related.forEach(prod => {
+        const price = prod.starting_price ? `From $${prod.starting_price.toFixed(2)}` : `$${prod.price.toFixed(2)}`;
+        grid.innerHTML += `
+          <div class="pro-card reveal" onclick="location.href='product.html?id=${prod.id}'" style="cursor:pointer;">
+            <img src="${prod.image}" alt="${prod.name}">
+            <h3>${prod.name}</h3>
+            <p style="color:var(--text-light);font-size:18px;font-weight:600;">${price}</p>
+          </div>`;
+      });
+    }
+  </script>
+</body>
+</html>
+

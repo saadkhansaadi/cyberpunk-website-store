@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulThread | Shopping Cart</title>
+  <link rel="icon" type="image/svg+xml" href="Assets/favicon.svg">
+
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="CSS/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- DYNAMIC NAVBAR PLACEHOLDER -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- ==============================
+       CART HERO SECTION 
+  =============================== -->
+  <section class="hero-wrapper" style="min-height: 40vh; background-image: url('products/hero_bg_1777238662886.png'); background-position: center;">
+    <div class="hero-content">
+      <h1 style="font-size: clamp(2rem, 4vw, 3.5rem);">Your <span class="text-gradient">Cart</span></h1>
+      <p>Secure the assets you have selected.</p>
+    </div>
+  </section>
+
+  <!-- ==============================
+       CART MAIN CONTENT
+  =============================== -->
+  <section class="section" style="padding-top: 60px; min-height: 50vh;">
+    <div style="display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap;">
+      
+      <!-- CART ITEMS CONTAINER -->
+      <div style="flex: 2; min-width: 300px;" id="cart-items-container">
+        <!-- Rendered by cart.js -->
+      </div>
+      
+      <!-- CART SUMMARY -->
+      <div class="contact-container reveal" style="flex: 1; min-width: 300px; padding: 40px; position: sticky; top: 100px;">
+        <h2 style="font-size: 24px; margin-bottom: 30px; border-bottom: 1px solid var(--border-light); padding-bottom: 15px;">Order Summary</h2>
+        
+        <!-- Coupon Code -->
+        <div style="margin-bottom: 20px;">
+          <div style="display: flex; gap: 8px;">
+            <input type="text" class="pro-input" placeholder="Coupon code" style="flex:1; padding: 10px 15px; font-size: 14px;" id="coupon-input">
+            <button class="btn-pro btn-outline" style="padding: 10px 18px; font-size: 13px;" onclick="applyCoupon()">Apply</button>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px; color: var(--text-muted); font-size: 16px;">
+          <span>Subtotal</span>
+          <span id="cart-subtotal" style="color: #fff;">$0.00</span>
+        </div>
+        
+        <div style="display: flex; justify-content: space-between; margin-bottom: 15px; color: var(--text-muted); font-size: 16px;">
+          <span>Shipping</span>
+          <span id="cart-shipping" style="color: #fff;">$0.00</span>
+        </div>
+
+        <!-- Shipping Progress -->
+        <div id="shipping-progress-section"></div>
+        
+        <div style="display: flex; justify-content: space-between; margin-top: 30px; border-top: 1px solid var(--border-light); padding-top: 20px; font-size: 22px; font-weight: bold;">
+          <span>Total</span>
+          <span id="cart-total" class="text-gradient">$0.00</span>
+        </div>
+        
+        <button class="btn-pro btn-glow" style="width: 100%; margin-top: 35px; padding: 18px; font-size: 16px;" onclick="location.href='checkout.html'">
+          <i class="fa-solid fa-lock" style="margin-right: 10px;"></i> Secure Checkout
+        </button>
+        
+        <p style="text-align: center; margin-top: 15px; font-size: 12px; color: var(--text-muted);">
+          Taxes calculated at checkout.<br>Free shipping on orders over $50.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- DYNAMIC FOOTER PLACEHOLDER -->
+  <div id="footer-placeholder"></div>
+
+  <script src="JS files/main.js"></script>
+  <script src="JS files/cart.js"></script>
+  <script>
+    function applyCoupon() {
+      const code = document.getElementById('coupon-input').value.trim();
+      if (!code) return;
+      showToast('Invalid coupon code', 'error');
+    }
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,752 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulThread | Elite Cyberpunk Fashion & Art</title>
+  <meta name="description" content="Forge your identity in the grid. High-end cyberpunk apparel, digital art prints, and custom commissions.">
+  <link rel="icon" type="image/svg+xml" href="Assets/favicon.svg">
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body class="loading">
+  <!-- SYSTEM PRELOADER -->
+  <div id="preloader">
+    <img src="Assets/logo.svg" style="width: 80px; filter: drop-shadow(0 0 15px var(--primary)); margin-bottom: 20px;">
+    <div style="font-family: 'Space Grotesk'; letter-spacing: 3px; font-size: 12px; color: var(--primary);">SYSTEM_INITIALIZING...</div>
+    <div class="loader-bar"><div class="loader-progress"></div></div>
+  </div>
+
+  <!-- DYNAMIC NAVBAR PLACEHOLDER -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- ==============================
+       LIVE SYSTEM FEED (TOP TICKER)
+  =============================== -->
+  <div class="system-feed-bar" style="background: rgba(139, 92, 246, 0.1); border-bottom: 1px solid rgba(139, 92, 246, 0.2); padding: 8px 0; overflow: hidden; position: relative; z-index: 100; margin-top: 80px;">
+    <div class="system-feed-track" style="display: flex; white-space: nowrap; animation: tickerScroll 60s linear infinite; gap: 50px;">
+        <span style="color: var(--primary); font-size: 11px; letter-spacing: 2px; font-family: 'Space Grotesk'; font-weight: bold;">[ SYSTEM STATUS: ALL NODES OPERATIONAL ]</span>
+        <span style="color: #fff; font-size: 11px; letter-spacing: 2px; font-family: 'Space Grotesk';">[ NODE_42 AUTHORIZED GENESIS PURCHASE FROM KARACHI_7 ]</span>
+        <span style="color: var(--secondary); font-size: 11px; letter-spacing: 2px; font-family: 'Space Grotesk';">[ SIGNAL: NEW ART DROP DETECTED IN SECTOR 01 ]</span>
+        <span style="color: var(--accent); font-size: 11px; letter-spacing: 2px; font-family: 'Space Grotesk';">[ LOG: ENCRYPTED TRANSACTION SECURED VIA STRIPE_NODE ]</span>
+        <span style="color: #fff; font-size: 11px; letter-spacing: 2px; font-family: 'Space Grotesk';">[ ALERT: LIMITED POSTER STOCK AT 12% ]</span>
+        <span style="color: var(--primary); font-size: 11px; letter-spacing: 2px; font-family: 'Space Grotesk'; font-weight: bold;">[ SYSTEM STATUS: ALL NODES OPERATIONAL ]</span>
+        <!-- Duplicate for seamless scroll -->
+        <span style="color: #fff; font-size: 11px; letter-spacing: 2px; font-family: 'Space Grotesk';">[ NODE_42 AUTHORIZED GENESIS PURCHASE FROM KARACHI_7 ]</span>
+        <span style="color: var(--secondary); font-size: 11px; letter-spacing: 2px; font-family: 'Space Grotesk';">[ SIGNAL: NEW ART DROP DETECTED IN SECTOR 01 ]</span>
+    </div>
+  </div>
+
+  <style>
+    @keyframes tickerScroll {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+    }
+  </style>
+
+  <!-- ==============================
+       THE GRID DROPS (LIVE COUNTDOWN)
+  =============================== -->
+  <section class="section" style="padding-bottom: 0;">
+    <div class="pro-card reveal" style="background: linear-gradient(45deg, rgba(139, 92, 246, 0.05), rgba(6, 182, 212, 0.05)); border: 1px solid var(--border-light); padding: 50px; text-align: center; position: relative; overflow: hidden; border-radius: 32px; box-shadow: 0 20px 50px rgba(0,0,0,0.3);">
+        <div style="position: absolute; top: 20px; right: 20px; font-family: 'Space Grotesk'; font-size: 10px; opacity: 0.3;">PROTOCOL: LIMITED_DROP_77</div>
+        <h4 style="color: var(--secondary); letter-spacing: 8px; margin-bottom: 15px; text-transform: uppercase; font-size: 12px;">NEXT LIMITED DROP</h4>
+        <h2 style="font-size: clamp(2rem, 5vw, 4rem); margin-bottom: 35px; font-weight: 800;">NEON-WEAVE <span class="text-gradient">COLLECTION</span></h2>
+        
+        <div id="dropCountdown" style="display: flex; justify-content: center; gap: clamp(10px, 4vw, 40px); margin-bottom: 45px;">
+            <div style="text-align: center;">
+                <div id="days" style="font-size: clamp(25px, 5vw, 50px); font-weight: 800; color: #fff; font-family: 'Space Grotesk'; line-height: 1;">00</div>
+                <div style="font-size: 10px; color: var(--text-muted); letter-spacing: 2px; margin-top: 10px;">DAYS</div>
+            </div>
+            <div style="font-size: clamp(25px, 5vw, 50px); color: var(--primary); font-family: 'Space Grotesk'; line-height: 1;">:</div>
+            <div style="text-align: center;">
+                <div id="hours" style="font-size: clamp(25px, 5vw, 50px); font-weight: 800; color: #fff; font-family: 'Space Grotesk'; line-height: 1;">00</div>
+                <div style="font-size: 10px; color: var(--text-muted); letter-spacing: 2px; margin-top: 10px;">HOURS</div>
+            </div>
+            <div style="font-size: clamp(25px, 5vw, 50px); color: var(--primary); font-family: 'Space Grotesk'; line-height: 1;">:</div>
+            <div style="text-align: center;">
+                <div id="minutes" style="font-size: clamp(25px, 5vw, 50px); font-weight: 800; color: #fff; font-family: 'Space Grotesk'; line-height: 1;">00</div>
+                <div style="font-size: 10px; color: var(--text-muted); letter-spacing: 2px; margin-top: 10px;">MINS</div>
+            </div>
+            <div style="font-size: clamp(25px, 5vw, 50px); color: var(--primary); font-family: 'Space Grotesk'; line-height: 1;">:</div>
+            <div style="text-align: center;">
+                <div id="seconds" style="font-size: clamp(25px, 5vw, 50px); font-weight: 800; color: var(--primary); font-family: 'Space Grotesk'; line-height: 1;">00</div>
+                <div style="font-size: 10px; color: var(--text-muted); letter-spacing: 2px; margin-top: 10px;">SECS</div>
+            </div>
+        </div>
+
+        <button class="btn-pro btn-glow" style="padding: 18px 50px; font-size: 14px; border-radius: 12px;" onclick="location.href='syndicate.html'">RESERVE EARLY ACCESS</button>
+    </div>
+  </section>
+
+  <script>
+    // Countdown Timer Logic
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 3); // Set drop in 3 days
+
+    function updateCountdown() {
+        const now = new Date();
+        const diff = targetDate - now;
+        if (diff <= 0) return;
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('days').textContent = d.toString().padStart(2, '0');
+        document.getElementById('hours').textContent = h.toString().padStart(2, '0');
+        document.getElementById('minutes').textContent = m.toString().padStart(2, '0');
+        document.getElementById('seconds').textContent = s.toString().padStart(2, '0');
+    }
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+
+  <!-- ==============================
+       PRO HERO SECTION 
+  =============================== -->
+  <section class="hero-wrapper scanline-overlay" style="background-image: url('products/hero_bg_1777238662886.png');">
+    <div class="hero-content">
+      <h1 class="glitch-text">Wear Your <span class="text-gradient" id="typewriter">Identity.</span></h1>
+      <p>Born in Pixels. Lives on Your Wall. A seamless fusion of digital art and cyberpunk streetwear.</p>
+
+      <div class="hero-buttons">
+        <a href="shop.html" class="btn-pro btn-glow">
+          <i class="fa-solid fa-bolt"></i> Enter the Collection
+        </a>
+        <a href="customize.html" class="btn-pro btn-outline">
+          <i class="fa-solid fa-palette"></i> Commission Artwork
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       TACTICAL GEAR GRID (AUTO-CYCLING)
+  =============================== -->
+  <section class="section" style="padding-top: 80px;">
+    <div style="text-align: center; margin-bottom: 60px;">
+        <h4 style="color: var(--primary); letter-spacing: 8px; margin-bottom: 15px; text-transform: uppercase; font-size: 12px;">AUTHORIZED EQUIPMENT</h4>
+        <h2 class="section-title reveal">The <span class="text-gradient">Gear Grid.</span></h2>
+    </div>
+
+    <!-- GRID WRAPPER -->
+    <div id="tacticalGrid" style="position: relative; max-width: 1300px; margin: auto; min-height: 500px;">
+        
+        <!-- PAGE 01 -->
+        <div class="grid-page active" id="page1" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; position: absolute; inset: 0; transition: all 1s ease; opacity: 1; visibility: visible;">
+            <!-- Product Card 01 -->
+            <div class="pro-card" style="padding: 0; overflow: hidden; border-radius: 24px; background: #000; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; position: relative;" onclick="location.href='product.html?id=prod1'">
+                <div style="position: absolute; top: 15px; left: 15px; z-index: 5; background: var(--primary); color: #fff; font-family: 'Space Grotesk'; font-size: 9px; padding: 4px 10px; border-radius: 4px;">[ LIMITED_EDITION ]</div>
+                <div style="height: 380px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=800&q=80" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 25px; background: rgba(255,255,255,0.02); display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div><h3 style="margin: 0; font-size: 20px;">Neon Grid Hoodie</h3><p style="margin: 5px 0 0; color: var(--text-muted); font-size: 12px;">SECTOR_01</p></div>
+                    <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 20px; color: var(--primary);">$120.00</div>
+                </div>
+            </div>
+            <!-- Product Card 02 -->
+            <div class="pro-card" style="padding: 0; overflow: hidden; border-radius: 24px; background: #000; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; position: relative;" onclick="location.href='product.html?id=prod2'">
+                <div style="position: absolute; top: 15px; left: 15px; z-index: 5; background: var(--secondary); color: #fff; font-family: 'Space Grotesk'; font-size: 9px; padding: 4px 10px; border-radius: 4px;">[ HIGH_CLEARANCE ]</div>
+                <div style="height: 380px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=800&q=80" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 25px; background: rgba(255,255,255,0.02); display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div><h3 style="margin: 0; font-size: 20px;">Geometric Tee</h3><p style="margin: 5px 0 0; color: var(--text-muted); font-size: 12px;">SECTOR_02</p></div>
+                    <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 20px; color: var(--secondary);">$45.00</div>
+                </div>
+            </div>
+            <!-- Product Card 03 -->
+            <div class="pro-card" style="padding: 0; overflow: hidden; border-radius: 24px; background: #000; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; position: relative;" onclick="location.href='product.html?id=prod3'">
+                <div style="position: absolute; top: 15px; left: 15px; z-index: 5; background: var(--accent); color: #fff; font-family: 'Space Grotesk'; font-size: 9px; padding: 4px 10px; border-radius: 4px;">[ DIGITAL_ASSET ]</div>
+                <div style="height: 380px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=800&q=80" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 25px; background: rgba(255,255,255,0.02); display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div><h3 style="margin: 0; font-size: 20px;">City Poster</h3><p style="margin: 5px 0 0; color: var(--text-muted); font-size: 12px;">SECTOR_03</p></div>
+                    <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 20px; color: var(--accent);">$35.00</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 02 (Hidden Initially) -->
+        <div class="grid-page" id="page2" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; position: absolute; inset: 0; transition: all 1s ease; opacity: 0; visibility: hidden; transform: translateY(20px);">
+            <!-- Product Card 04 -->
+            <div class="pro-card" style="padding: 0; overflow: hidden; border-radius: 24px; background: #000; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; position: relative;" onclick="location.href='product.html?id=prod4'">
+                <div style="position: absolute; top: 15px; left: 15px; z-index: 5; background: var(--primary); color: #fff; font-family: 'Space Grotesk'; font-size: 9px; padding: 4px 10px; border-radius: 4px;">[ NEW_SIGNAL ]</div>
+                <div style="height: 380px; position: relative; overflow: hidden;">
+                    <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=800&q=80" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 25px; background: rgba(255,255,255,0.02); display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div><h3 style="margin: 0; font-size: 20px;">Digital Avatar</h3><p style="margin: 5px 0 0; color: var(--text-muted); font-size: 12px;">SECTOR_04</p></div>
+                    <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 20px; color: var(--primary);">$90.00</div>
+                </div>
+            </div>
+            <!-- Product Card 05 -->
+            <div class="pro-card" style="padding: 0; overflow: hidden; border-radius: 24px; background: #000; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; position: relative;" onclick="location.href='product.html?id=prod5'">
+                <div style="position: absolute; top: 15px; left: 15px; z-index: 5; background: var(--secondary); color: #fff; font-family: 'Space Grotesk'; font-size: 9px; padding: 4px 10px; border-radius: 4px;">[ VOID_CORE ]</div>
+                <div style="height: 380px; position: relative; overflow: hidden;">
+                    <img src="products/hero.png" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 25px; background: rgba(255,255,255,0.02); display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div><h3 style="margin: 0; font-size: 20px;">Void Cap</h3><p style="margin: 5px 0 0; color: var(--text-muted); font-size: 12px;">SECTOR_05</p></div>
+                    <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 20px; color: var(--secondary);">$30.00</div>
+                </div>
+            </div>
+            <!-- Product Card 06 -->
+            <div class="pro-card" style="padding: 0; overflow: hidden; border-radius: 24px; background: #000; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; position: relative;" onclick="location.href='product.html?id=prod6'">
+                <div style="position: absolute; top: 15px; left: 15px; z-index: 5; background: var(--accent); color: #fff; font-family: 'Space Grotesk'; font-size: 9px; padding: 4px 10px; border-radius: 4px;">[ QUANTUM_DROP ]</div>
+                <div style="height: 380px; position: relative; overflow: hidden;">
+                    <img src="products/hoodie_prod_1777238758809.png" style="width: 100%; height: 100%; object-fit: cover; filter: hue-rotate(90deg);">
+                </div>
+                <div style="padding: 25px; background: rgba(255,255,255,0.02); display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div><h3 style="margin: 0; font-size: 20px;">Quantum Hoodie</h3><p style="margin: 5px 0 0; color: var(--text-muted); font-size: 12px;">SECTOR_06</p></div>
+                    <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 20px; color: var(--accent);">$135.00</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let currentPage = 1;
+        const totalPages = 2;
+
+        function cycleGearGrid() {
+            const currentEl = document.getElementById(`page${currentPage}`);
+            currentPage = currentPage === totalPages ? 1 : currentPage + 1;
+            const nextEl = document.getElementById(`page${currentPage}`);
+
+            // Fade out current
+            currentEl.style.opacity = '0';
+            currentEl.style.visibility = 'hidden';
+            currentEl.style.transform = 'translateY(-20px)';
+
+            setTimeout(() => {
+                // Fade in next
+                nextEl.style.opacity = '1';
+                nextEl.style.visibility = 'visible';
+                nextEl.style.transform = 'translateY(0)';
+            }, 500);
+        }
+
+        setInterval(cycleGearGrid, 5000); // Cycle every 5 seconds
+    </script>
+
+    <div style="text-align: center; margin-top: 60px;">
+        <button class="btn-pro btn-outline" style="padding: 15px 40px; border-radius: 12px;" onclick="location.href='shop.html'">ACCESS FULL INVENTORY <i class="fa-solid fa-arrow-right" style="margin-left: 10px;"></i></button>
+    </div>
+  </section>
+
+  <!-- ==============================
+       LATEST RELEASES (GRID SEQUENCE)
+  =============================== -->
+  <section class="section" style="overflow: hidden; background: rgba(0,0,0,0.2); position: relative;">
+    <div style="text-align: center; margin-bottom: 60px;">
+        <h4 style="color: var(--secondary); letter-spacing: 5px; margin-bottom: 15px; text-transform: uppercase; font-size: 12px;">NEW DEPLOYMENTS</h4>
+        <h2 class="section-title reveal">Latest <span class="text-gradient">Releases</span></h2>
+    </div>
+
+    <!-- GRID CONTAINER -->
+    <div id="releaseGridContainer" style="position: relative; max-width: 1400px; margin: auto; min-height: 650px;">
+        
+        <!-- PAGE 01 -->
+        <div class="release-page active" id="relPage1" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; position: absolute; inset: 0; transition: all 1s ease; opacity: 1; visibility: visible; padding: 0 20px;">
+            
+            <!-- Item 1 -->
+            <div class="pro-card" style="padding: 0; border-radius: 24px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
+                <div style="position: relative; height: 300px;">
+                    <div style="position: absolute; top: 15px; left: 15px; z-index: 5; background: var(--primary); color: #fff; font-family: 'Space Grotesk'; font-size: 9px; padding: 4px 10px; border-radius: 4px;">HOODIE</div>
+                    <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                    <h3 style="margin: 0; font-size: 18px;">Neon Grid Hoodie</h3>
+                    <p style="color: var(--text-muted); font-size: 13px; margin: 15px 0; line-height: 1.6;">Premium heavyweight cotton featuring subtle glowing tech-lines. Designed for the urban night.</p>
+                    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 15px;">
+                        <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 22px; color: var(--primary);">$120.00</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <button class="btn-pro btn-glow" style="padding: 10px; font-size: 11px;" onclick="addToCart({id:'prod1', name:'Neon Grid Hoodie', price:120, image:'https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=200'})"><i class="fa-solid fa-cart-plus"></i> ADD</button>
+                            <button class="btn-pro btn-outline" style="padding: 10px; font-size: 11px;" onclick="location.href='product.html?id=prod1'">DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="pro-card" style="padding: 0; border-radius: 24px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
+                <div style="position: relative; height: 300px;">
+                    <div style="position: absolute; top: 15px; left: 15px; z-index: 5; background: var(--secondary); color: #fff; font-family: 'Space Grotesk'; font-size: 9px; padding: 4px 10px; border-radius: 4px;">DIGITAL_ART</div>
+                    <img src="https://images.unsplash.com/photo-1614728263952-84ea206f99b6?w=600&q=80" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                    <h3 style="margin: 0; font-size: 18px;">Cyberpunk Portrait</h3>
+                    <p style="color: var(--text-muted); font-size: 13px; margin: 15px 0; line-height: 1.6;">High-resolution digital art commission. Turn your identity into a stylized masterpiece.</p>
+                    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 15px;">
+                        <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 22px; color: var(--secondary);">$85.00</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <button class="btn-pro btn-glow" style="padding: 10px; font-size: 11px;" onclick="addToCart({id:'art1', name:'Cyberpunk Portrait', price:85, image:'https://images.unsplash.com/photo-1614728263952-84ea206f99b6?w=200'})"><i class="fa-solid fa-cart-plus"></i> ADD</button>
+                            <button class="btn-pro btn-outline" style="padding: 10px; font-size: 11px;" onclick="location.href='customize.html'">COMMISSION</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="pro-card" style="padding: 0; border-radius: 24px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
+                <div style="position: relative; height: 300px;">
+                    <div style="position: absolute; top: 15px; left: 15px; z-index: 5; background: var(--accent); color: #fff; font-family: 'Space Grotesk'; font-size: 9px; padding: 4px 10px; border-radius: 4px;">POSTER</div>
+                    <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=600&q=80" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                    <h3 style="margin: 0; font-size: 18px;">Neon City Poster</h3>
+                    <p style="color: var(--text-muted); font-size: 13px; margin: 15px 0; line-height: 1.6;">Minimalist aesthetic vector art poster. Bring the deep night into your physical space.</p>
+                    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 15px;">
+                        <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 22px; color: var(--accent);">$35.00</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <button class="btn-pro btn-glow" style="padding: 10px; font-size: 11px;" onclick="addToCart({id:'post1', name:'Neon City Poster', price:35, image:'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=200'})"><i class="fa-solid fa-cart-plus"></i> ADD</button>
+                            <button class="btn-pro btn-outline" style="padding: 10px; font-size: 11px;" onclick="location.href='product.html?id=prod3'">DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="pro-card" style="padding: 0; border-radius: 24px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
+                <div style="position: relative; height: 300px;">
+                    <div style="position: absolute; top: 15px; left: 15px; z-index: 5; background: var(--secondary); color: #fff; font-family: 'Space Grotesk'; font-size: 9px; padding: 4px 10px; border-radius: 4px;">T_SHIRT</div>
+                    <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&q=80" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                    <h3 style="margin: 0; font-size: 18px;">Geometric Soul Tee</h3>
+                    <p style="color: var(--text-muted); font-size: 13px; margin: 15px 0; line-height: 1.6;">Breathable streetwear t-shirt with a stark white geometric logo. Simple but undeniable.</p>
+                    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 15px;">
+                        <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 22px; color: var(--secondary);">$45.00</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <button class="btn-pro btn-glow" style="padding: 10px; font-size: 11px;" onclick="addToCart({id:'prod2', name:'Geometric Soul Tee', price:45, image:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=200'})"><i class="fa-solid fa-cart-plus"></i> ADD</button>
+                            <button class="btn-pro btn-outline" style="padding: 10px; font-size: 11px;" onclick="location.href='product.html?id=prod2'">DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PAGE 02 -->
+        <div class="release-page" id="relPage2" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; position: absolute; inset: 0; transition: all 1s ease; opacity: 0; visibility: hidden; transform: translateX(50px); padding: 0 20px;">
+            <!-- Similar items for looping effect -->
+            <div class="pro-card" style="padding: 0; border-radius: 24px; overflow: hidden; background: #000; border: 1px solid rgba(255,255,255,0.05); display: flex; flex-direction: column;">
+                <div style="position: relative; height: 300px;">
+                    <div style="position: absolute; top: 15px; left: 15px; z-index: 5; background: var(--primary); color: #fff; font-family: 'Space Grotesk'; font-size: 9px; padding: 4px 10px; border-radius: 4px;">NEW_DROP</div>
+                    <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=600&q=80" style="width: 100%; height: 100%; object-fit: cover;">
+                </div>
+                <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                    <h3 style="margin: 0; font-size: 18px;">Digital Avatar</h3>
+                    <p style="color: var(--text-muted); font-size: 13px; margin: 15px 0; line-height: 1.6;">Unique digital identity asset for the meta-grid. High fidelity renders.</p>
+                    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 15px;">
+                        <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 22px; color: var(--primary);">$90.00</div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                            <button class="btn-pro btn-glow" style="padding: 10px; font-size: 11px;" onclick="addToCart({id:'prod4', name:'Digital Avatar', price:90, image:'https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=200'})"><i class="fa-solid fa-cart-plus"></i> ADD</button>
+                            <button class="btn-pro btn-outline" style="padding: 10px; font-size: 11px;" onclick="location.href='product.html?id=prod4'">DETAILS</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Duplicate some cards to fill the grid -->
+            <div class="pro-card" style="opacity: 0.3; filter: grayscale(1);"></div>
+            <div class="pro-card" style="opacity: 0.3; filter: grayscale(1);"></div>
+            <div class="pro-card" style="opacity: 0.3; filter: grayscale(1);"></div>
+        </div>
+
+    </div>
+
+    <script>
+        let curRelPage = 1;
+        const totalRelPages = 2;
+
+        function cycleReleaseGrid() {
+            const currentEl = document.getElementById(`relPage${curRelPage}`);
+            if(!currentEl) return;
+            curRelPage = curRelPage === totalRelPages ? 1 : curRelPage + 1;
+            const nextEl = document.getElementById(`relPage${curRelPage}`);
+
+            currentEl.style.opacity = '0';
+            currentEl.style.visibility = 'hidden';
+            currentEl.style.transform = 'translateX(-30px)';
+
+            setTimeout(() => {
+                nextEl.style.visibility = 'visible';
+                nextEl.style.opacity = '1';
+                nextEl.style.transform = 'translateX(0)';
+            }, 500);
+        }
+
+        setInterval(cycleReleaseGrid, 8000); // Cycle every 8 seconds
+    </script>
+  </section>
+
+  <!-- ==============================
+       WHY CHOOSE SOULTHREAD
+  =============================== -->
+  <section class="section">
+    <h2 class="section-title reveal">Why Choose <span class="text-gradient">SoulThread</span></h2>
+    <div class="grid">
+      <div class="pro-card reveal" style="text-align: center;">
+        <i class="fa-solid fa-gem" style="font-size: 40px; color: var(--primary); margin-bottom: 20px;"></i>
+        <h3>Premium Quality</h3>
+        <p>We source only the finest heavy-weight fabrics for our streetwear, ensuring extreme durability and comfort.
+        </p>
+      </div>
+      <div class="pro-card reveal" style="transition-delay: 0.1s; text-align: center;">
+        <i class="fa-solid fa-user-ninja" style="font-size: 40px; color: var(--secondary); margin-bottom: 20px;"></i>
+        <h3>Exclusive Designs</h3>
+        <p>Every piece of art is uniquely crafted. Once a limited edition drop is sold out, it is gone forever.</p>
+      </div>
+      <div class="pro-card reveal" style="transition-delay: 0.2s; text-align: center;">
+        <i class="fa-solid fa-globe" style="font-size: 40px; color: var(--accent); margin-bottom: 20px;"></i>
+        <h3>Global Community</h3>
+        <p>Join a worldwide network of cyber-aesthetics enthusiasts, artists, and trend-setters.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       STRATEGIC NETWORK (TRUST SECTION)
+  =============================== -->
+  <section class="section" style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+    <h2 class="section-title reveal">Global <span class="text-gradient">Ecosystem</span></h2>
+    <p style="text-align: center; color: var(--text-muted); margin-top: -50px; margin-bottom: 60px; max-width: 700px; margin-inline: auto;">
+      SoulThread is powered by a network of world-class partners, ensuring elite quality in manufacturing, logistics, and digital security.
+    </p>
+    
+    <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
+      
+      <!-- Logistics -->
+      <div class="pro-card reveal" style="padding: 40px; text-align: left;">
+        <h4 style="color: var(--primary); letter-spacing: 2px; margin-bottom: 25px; font-size: 14px; text-transform: uppercase;">Logistics & Deployment</h4>
+        <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 20px; letter-spacing: 2px; line-height: 1.5; color: var(--text-light);">
+            <span style="color: var(--primary);">DHL</span> // FEDEX // <span style="color: var(--secondary);">UPS</span>
+        </div>
+        <p style="margin-top: 25px; font-size: 14px; color: var(--text-muted);">Authorized global nodes for rapid deployment and real-time transit tracking across all sectors.</p>
+      </div>
+
+      <!-- Technology -->
+      <div class="pro-card reveal" style="padding: 40px; text-align: left; transition-delay: 0.1s;">
+        <h4 style="color: var(--secondary); letter-spacing: 2px; margin-bottom: 25px; font-size: 14px; text-transform: uppercase;">Technology Stack</h4>
+        <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 20px; letter-spacing: 2px; line-height: 1.5; color: var(--text-light);">
+            CLOUDFLARE // <span style="color: var(--primary);">AWS</span> // <span style="color: var(--accent);">GCP</span>
+        </div>
+        <p style="margin-top: 25px; font-size: 14px; color: var(--text-muted);">Secured by enterprise-grade encryption, Cloudflare firewalling, and decentralized server networks.</p>
+      </div>
+
+      <!-- Payments -->
+      <div class="pro-card reveal" style="padding: 40px; text-align: left; transition-delay: 0.2s;">
+        <h4 style="color: var(--accent); letter-spacing: 2px; margin-bottom: 25px; font-size: 14px; text-transform: uppercase;">Payment Protocols</h4>
+        <div style="font-family: 'Space Grotesk'; font-weight: 800; font-size: 20px; letter-spacing: 2px; line-height: 1.5; color: var(--text-light);">
+            <span style="color: var(--secondary);">STRIPE</span> // PAYPAL // <span style="color: var(--primary);">VISA</span>
+        </div>
+        <p style="margin-top: 25px; font-size: 14px; color: var(--text-muted);">PCI-compliant transactional gateways powered by elite nodes for secure global commerce.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==============================
+       SECTOR 01: THE CREATIVE SANCTUM (HQ & TEAM)
+  =============================== -->
+  <section class="section" style="background: url('https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1600&q=80') center; background-size: cover; background-attachment: fixed; position: relative; padding: 150px 20px;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(to bottom, var(--bg-dark), rgba(9,9,11,0.8), var(--bg-dark));"></div>
+    
+    <div style="position: relative; z-index: 2; max-width: 1200px; margin: auto;">
+        
+        <div style="text-align: center; margin-bottom: 80px;">
+            <h4 style="color: var(--primary); letter-spacing: 8px; margin-bottom: 20px; text-transform: uppercase; font-size: 14px;">COMMAND CENTER</h4>
+            <h2 class="glitch-text" style="font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 20px;">The <span class="text-gradient">Architects.</span></h2>
+            <p style="color: var(--text-muted); max-width: 600px; margin: auto; font-size: 18px;">Behind every digital thread is a specialized node operating from our centralized design sanctuary.</p>
+        </div>
+
+        <!-- HQ GLASS DOSSIER -->
+        <div class="pro-card reveal" style="background: rgba(255,255,255,0.03); backdrop-filter: blur(30px); border: 1px solid rgba(255,255,255,0.1); border-radius: 32px; padding: 60px; margin-bottom: 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; box-shadow: 0 40px 100px rgba(0,0,0,0.5);">
+            <div style="position: relative; border-radius: 20px; overflow: hidden; height: 350px; border: 1px solid var(--primary);">
+                <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&q=80" style="width: 100%; height: 100%; object-fit: cover;">
+                <div style="position: absolute; inset: 0; background: linear-gradient(0deg, var(--bg-dark), transparent);"></div>
+                <div style="position: absolute; bottom: 20px; left: 20px; font-family: 'Space Grotesk'; font-size: 12px; letter-spacing: 3px;">[ SECTOR_01_VISUAL ]</div>
+            </div>
+            <div>
+                <h3 style="font-size: 32px; margin-bottom: 25px; color: #fff;">Sector 01 HQ <span style="color: var(--primary); font-size: 14px; vertical-align: middle; margin-left: 10px;">// KARACHI_NODE</span></h3>
+                <p style="font-size: 16px; line-height: 1.8; color: var(--text-muted); margin-bottom: 30px;">
+                    Our headquarters is a 5,000 sq. ft. digital-physical fusion studio located in the heart of **Karachi, Pakistan**. Equipped with advanced fabric printers and high-fidelity render farms, this is where the SoulThread vision is forged.
+                </p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div style="padding: 15px; background: rgba(255,255,255,0.02); border-left: 3px solid var(--primary); border-radius: 4px;">
+                        <small style="color: var(--primary); display: block; margin-bottom: 5px;">LOCATION</small>
+                        <span style="font-size: 13px; letter-spacing: 1px;">SINDH, KARACHI</span>
+                    </div>
+                    <div style="padding: 15px; background: rgba(255,255,255,0.02); border-left: 3px solid var(--secondary); border-radius: 4px;">
+                        <small style="color: var(--secondary); display: block; margin-bottom: 5px;">STATUS</small>
+                        <span style="font-size: 13px; letter-spacing: 1px;">24/7 OPERATION</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TEAM HUD GRID -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px;">
+            
+            <!-- Node 01 -->
+            <div class="pro-card reveal" style="background: rgba(255,255,255,0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 24px; transition: 0.5s;">
+                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop" style="width: 70px; height: 70px; border-radius: 15px; margin-bottom: 20px; filter: grayscale(1); transition: 0.3s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(1)'">
+                <h4 style="margin: 0; font-size: 18px;">Saad Khan</h4>
+                <p style="color: var(--primary); font-size: 10px; letter-spacing: 2px; margin: 8px 0 15px;">FOUNDER // CREATOR</p>
+                <div style="font-size: 10px; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px;">ACCESS: LVL_OMEGA</div>
+            </div>
+
+            <!-- Node 02 -->
+            <div class="pro-card reveal" style="background: rgba(255,255,255,0.02); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.05); padding: 30px; border-radius: 24px; transition: 0.5s;">
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop" style="width: 70px; height: 70px; border-radius: 15px; margin-bottom: 20px; filter: grayscale(1); transition: 0.3s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(1)'">
+                <h4 style="margin: 0; font-size: 18px;">Rose</h4>
+                <p style="color: var(--secondary); font-size: 10px; letter-spacing: 2px; margin: 8px 0 15px;">TECH LEAD // WEB</p>
+                <div style="font-size: 10px; color: var(--text-muted); border-top: 1px solid rgba(255,255,255,0.05); padding-top: 15px;">ACCESS: LVL_ADMIN</div>
+            </div>
+
+            <!-- Anonymous Nodes 03-10 -->
+            <div class="pro-card reveal" style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); padding: 25px; border-radius: 20px; transition: 0.3s;">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" style="width: 50px; height: 50px; border-radius: 10px; margin-bottom: 15px; filter: grayscale(1); transition: 0.3s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(1)'">
+                <h5 style="margin: 0; font-size: 16px; color: var(--text-muted);">Node_03</h5>
+                <p style="color: var(--accent); font-size: 9px; letter-spacing: 1px; margin: 5px 0 10px;">CREATIVE_LEAD</p>
+                <div style="font-size: 9px; opacity: 0.3;">ST_CORE_STAFF</div>
+            </div>
+            <div class="pro-card reveal" style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); padding: 25px; border-radius: 20px; transition: 0.3s;">
+                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop" style="width: 50px; height: 50px; border-radius: 10px; margin-bottom: 15px; filter: grayscale(1); transition: 0.3s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(1)'">
+                <h5 style="margin: 0; font-size: 16px; color: var(--text-muted);">Node_04</h5>
+                <p style="color: var(--accent); font-size: 9px; letter-spacing: 1px; margin: 5px 0 10px;">OPS_MANAGER</p>
+                <div style="font-size: 9px; opacity: 0.3;">ST_CORE_STAFF</div>
+            </div>
+            <div class="pro-card reveal" style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); padding: 25px; border-radius: 20px; transition: 0.3s;">
+                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop" style="width: 50px; height: 50px; border-radius: 10px; margin-bottom: 15px; filter: grayscale(1); transition: 0.3s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(1)'">
+                <h5 style="margin: 0; font-size: 16px; color: var(--text-muted);">Node_05</h5>
+                <p style="color: var(--accent); font-size: 9px; letter-spacing: 1px; margin: 5px 0 10px;">FABRIC_ARCHITECT</p>
+                <div style="font-size: 9px; opacity: 0.3;">ST_CORE_STAFF</div>
+            </div>
+            <div class="pro-card reveal" style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); padding: 25px; border-radius: 20px; transition: 0.3s;">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop" style="width: 50px; height: 50px; border-radius: 10px; margin-bottom: 15px; filter: grayscale(1); transition: 0.3s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(1)'">
+                <h5 style="margin: 0; font-size: 16px; color: var(--text-muted);">Node_06</h5>
+                <p style="color: var(--accent); font-size: 9px; letter-spacing: 1px; margin: 5px 0 10px;">DIGITAL_ARTIST</p>
+                <div style="font-size: 9px; opacity: 0.3;">ST_CORE_STAFF</div>
+            </div>
+            <div class="pro-card reveal" style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); padding: 25px; border-radius: 20px; transition: 0.3s;">
+                <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=200&h=200&fit=crop" style="width: 50px; height: 50px; border-radius: 10px; margin-bottom: 15px; filter: grayscale(1); transition: 0.3s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(1)'">
+                <h5 style="margin: 0; font-size: 16px; color: var(--text-muted);">Node_07</h5>
+                <p style="color: var(--accent); font-size: 9px; letter-spacing: 1px; margin: 5px 0 10px;">NODE_ANALYST</p>
+                <div style="font-size: 9px; opacity: 0.3;">ST_CORE_STAFF</div>
+            </div>
+            <div class="pro-card reveal" style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); padding: 25px; border-radius: 20px; transition: 0.3s;">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop" style="width: 50px; height: 50px; border-radius: 10px; margin-bottom: 15px; filter: grayscale(1); transition: 0.3s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(1)'">
+                <h5 style="margin: 0; font-size: 16px; color: var(--text-muted);">Node_08</h5>
+                <p style="color: var(--accent); font-size: 9px; letter-spacing: 1px; margin: 5px 0 10px;">COMMUNITY_LEAD</p>
+                <div style="font-size: 9px; opacity: 0.3;">ST_CORE_STAFF</div>
+            </div>
+            <div class="pro-card reveal" style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); padding: 25px; border-radius: 20px; transition: 0.3s;">
+                <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop" style="width: 50px; height: 50px; border-radius: 10px; margin-bottom: 15px; filter: grayscale(1); transition: 0.3s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(1)'">
+                <h5 style="margin: 0; font-size: 16px; color: var(--text-muted);">Node_09</h5>
+                <p style="color: var(--accent); font-size: 9px; letter-spacing: 1px; margin: 5px 0 10px;">UX_ENGINEER</p>
+                <div style="font-size: 9px; opacity: 0.3;">ST_CORE_STAFF</div>
+            </div>
+            <div class="pro-card reveal" style="background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.03); padding: 25px; border-radius: 20px; transition: 0.3s;">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop" style="width: 50px; height: 50px; border-radius: 10px; margin-bottom: 15px; filter: grayscale(1); transition: 0.3s;" onmouseover="this.style.filter='none'" onmouseout="this.style.filter='grayscale(1)'">
+                <h5 style="margin: 0; font-size: 16px; color: var(--text-muted);">Node_10</h5>
+                <p style="color: var(--accent); font-size: 9px; letter-spacing: 1px; margin: 5px 0 10px;">LOGISTICS_EXEC</p>
+                <div style="font-size: 9px; opacity: 0.3;">ST_CORE_STAFF</div>
+            </div>
+
+        </div>
+
+    </div>
+  </section>
+
+  <!-- ==============================
+       BIG OUTLINE MARQUEE DIVIDER
+  =============================== -->
+  <div class="big-marquee-wrapper outline reveal">
+    <div class="big-marquee-text">
+      <span>NEW ARRIVALS</span> <span>•</span> <span>NEON GRID COLLECTION</span> <span>•</span> <span>CYBER GEAR</span>
+      <span>•</span>
+      <span>NEW ARRIVALS</span> <span>•</span> <span>NEON GRID COLLECTION</span> <span>•</span> <span>CYBER GEAR</span>
+      <span>•</span>
+      <span>NEW ARRIVALS</span> <span>•</span> <span>NEON GRID COLLECTION</span> <span>•</span> <span>CYBER GEAR</span>
+      <span>•</span>
+    </div>
+  </div>
+
+  <!-- ==============================
+       TESTIMONIALS (USER LOGS)
+  =============================== -->
+  <section class="section"
+    style="background: rgba(255,255,255,0.01); border-top: 1px solid rgba(255,255,255,0.05); border-bottom: 1px solid rgba(255,255,255,0.05);">
+    <h2 class="section-title reveal">User <span class="text-gradient">Logs</span></h2>
+    <div class="testimonial-slider">
+      <div class="pro-card testimonial-item reveal"
+        style="border-left: 4px solid var(--primary); display: flex; flex-direction: column; justify-content: space-between;">
+        <p style="font-style: italic; font-size: 16px; margin-bottom: 20px;">"The Neon Grid hoodie is unreal. The
+          quality of the print and the material feels like it's straight out of 2077. Incredible work."</p>
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&h=100&fit=crop" alt="Alex J"
+            style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;" loading="lazy">
+          <div>
+            <h4 style="color: var(--primary); margin: 0;">Alex J.</h4>
+            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">Verified Buyer</p>
+          </div>
+        </div>
+      </div>
+      <div class="pro-card testimonial-item reveal"
+        style="border-left: 4px solid var(--secondary); transition-delay: 0.1s; display: flex; flex-direction: column; justify-content: space-between;">
+        <p style="font-style: italic; font-size: 16px; margin-bottom: 20px;">"I commissioned a digital portrait and the
+          artist completely captured my vibe. It's my profile picture everywhere now."</p>
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop" alt="Sarah K"
+            style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+          <div>
+            <h4 style="color: var(--secondary); margin: 0;">Sarah K.</h4>
+            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">Verified Client</p>
+          </div>
+        </div>
+      </div>
+      <div class="pro-card testimonial-item reveal"
+        style="border-left: 4px solid var(--accent); transition-delay: 0.2s; display: flex; flex-direction: column; justify-content: space-between;">
+        <p style="font-style: italic; font-size: 16px; margin-bottom: 20px;">"Fast shipping and the packaging was an
+          experience in itself. SoulThread is building a real culture here."</p>
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop" alt="Marcus T"
+            style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+          <div>
+            <h4 style="color: var(--accent); margin: 0;">Marcus T.</h4>
+            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">Verified Buyer</p>
+          </div>
+        </div>
+      </div>
+      <div class="pro-card testimonial-item reveal"
+        style="border-left: 4px solid #eab308; transition-delay: 0.3s; display: flex; flex-direction: column; justify-content: space-between;">
+        <p style="font-style: italic; font-size: 16px; margin-bottom: 20px;">"The glassmorphism aesthetic on the merch
+          is crazy. I've had three people ask me where I got the Void Runner Cap."</p>
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop" alt="Leo R"
+            style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+          <div>
+            <h4 style="color: #eab308; margin: 0;">Leo R.</h4>
+            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">Verified Buyer</p>
+          </div>
+        </div>
+      </div>
+      <div class="pro-card testimonial-item reveal"
+        style="border-left: 4px solid #ec4899; transition-delay: 0.4s; display: flex; flex-direction: column; justify-content: space-between;">
+        <p style="font-style: italic; font-size: 16px; margin-bottom: 20px;">"I love that this brand blends real
+          clothing with custom digital art. I submitted a commission and it turned out perfect."</p>
+        <div style="display: flex; align-items: center; gap: 15px;">
+          <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop" alt="Priya M"
+            style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+          <div>
+            <h4 style="color: #ec4899; margin: 0;">Priya M.</h4>
+            <p style="font-size: 12px; color: var(--text-muted); margin: 0;">Verified Client</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       FAQ
+  =============================== -->
+  <section class="section"
+    style="background: rgba(59, 130, 246, 0.05); padding: 80px 20px; border-top: 1px solid rgba(59, 130, 246, 0.2);">
+    <h2 class="section-title reveal">Frequently Asked <span class="text-gradient">Queries</span></h2>
+    <div style="max-width: 800px; margin: auto;">
+
+      <div class="faq-item reveal">
+        <div class="faq-question">
+          Do you ship internationally?
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p style="padding-bottom: 15px;">Yes, we offer global shipping. Orders above $50 automatically qualify for
+            free priority delivery to anywhere in the world.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay: 0.1s;">
+        <div class="faq-question">
+          How long do custom commissions take?
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p style="padding-bottom: 15px;">Digital portraits typically take 3-5 business days. Once approved, physical
+            printing takes an additional 2 days.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay: 0.2s;">
+        <div class="faq-question">
+          Are the limited edition drops restocked?
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p style="padding-bottom: 15px;">No. To maintain exclusivity, once a limited edition collection sells out,
+            those specific designs are vaulted permanently.</p>
+        </div>
+      </div>
+
+      <div class="faq-item reveal" style="transition-delay: 0.3s;">
+        <div class="faq-question">
+          What is your return policy?
+          <i class="fa-solid fa-chevron-down"></i>
+        </div>
+        <div class="faq-answer">
+          <p style="padding-bottom: 15px;">We offer a 14-day return window for unworn apparel. Custom commissions and
+            digital art are non-refundable.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==============================
+       THE GENESIS & THE BRAIN
+  =============================== -->
+  <section class="section" style="background: linear-gradient(180deg, transparent, rgba(139, 92, 246, 0.05));">
+    <div style="display: flex; gap: 80px; align-items: center; flex-wrap: wrap;">
+      <div style="flex: 1; min-width: 300px;">
+        <h2 class="section-title" style="text-align: left; margin-bottom: 30px;">How We Got <span class="text-gradient">Started</span></h2>
+        <p style="font-size: 18px; line-height: 1.8; color: var(--text-muted); margin-bottom: 30px;">
+          SoulThread began as a series of encrypted files shared between digital artists and tech-wear enthusiasts. Our goal was simple: to create gear that reflects the complexity of our digital lives. 
+        </p>
+        <p style="font-size: 18px; line-height: 1.8; color: var(--text-muted);">
+          From a small basement node in Neo-Tokyo to a global movement, we have always prioritized quality and authenticity. We don't just make clothes; we forge identity.
+        </p>
+        <div style="margin-top: 40px;">
+          <a href="story.html" class="btn-pro btn-outline">Read Full Intel</a>
+        </div>
+      </div>
+      
+      <div style="flex: 1; min-width: 300px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+        <div class="pro-card reveal" style="padding: 30px; text-align: center; cursor: pointer;" onclick="location.href='profile-saad.html'">
+          <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=200&h=200&fit=crop" style="width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 20px; border: 2px solid var(--primary); object-fit: cover;">
+          <h4 style="margin-bottom: 5px;">Saad Khan</h4>
+          <p style="font-size: 12px; color: var(--primary);">Co founder & Creator</p>
+        </div>
+        <div class="pro-card reveal" style="padding: 30px; text-align: center; transition-delay: 0.1s; cursor: pointer;" onclick="location.href='profile-rose.html'">
+          <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=200&h=200&fit=crop" style="width: 100px; height: 100px; border-radius: 50%; margin: 0 auto 20px; border: 2px solid var(--secondary); object-fit: cover;">
+          <h4 style="margin-bottom: 5px;">Rose</h4>
+          <p style="font-size: 12px; color: var(--secondary);">Web developer & assistant</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DYNAMIC FOOTER PLACEHOLDER -->
+  <div id="footer-placeholder"></div>
+
+  <script src="JS files/main.js"></script>
+</body>
+
+</html>

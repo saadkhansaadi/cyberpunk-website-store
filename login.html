@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulThread | Identity Authentication</title>
+  <link rel="icon" type="image/svg+xml" href="Assets/favicon.svg">
+
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="CSS/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  
+  <style>
+    .auth-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      max-width: 1000px;
+      margin: 100px auto;
+      padding: 0 20px;
+    }
+    .auth-section {
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(139, 92, 246, 0.2);
+      border-radius: 12px;
+      padding: 40px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+    }
+    .auth-section h2 {
+      margin-bottom: 30px;
+      color: var(--primary);
+    }
+    @media (max-width: 800px) {
+      .auth-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- DYNAMIC NAVBAR PLACEHOLDER -->
+  <div id="navbar-placeholder"></div>
+
+  <div class="auth-grid">
+    
+    <!-- Login Form -->
+    <div class="auth-section reveal">
+      <h2><i class="fa-solid fa-right-to-bracket"></i> Login</h2>
+      <form id="loginForm">
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; margin-bottom: 10px; color: var(--text-light);">Signal (Email)</label>
+          <input type="email" class="pro-input" id="loginEmail" required placeholder="operative@grid.com">
+        </div>
+        <div style="margin-bottom: 30px;">
+          <label style="display: block; margin-bottom: 10px; color: var(--text-light);">Access Code (Password)</label>
+          <input type="password" class="pro-input" id="loginPassword" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-pro btn-glow" style="width: 100%; padding: 15px; font-size: 16px;">
+          AUTHENTICATE
+        </button>
+      </form>
+    </div>
+
+    <!-- Register Form -->
+    <div class="auth-section reveal" style="transition-delay: 0.1s;">
+      <h2><i class="fa-solid fa-user-plus"></i> Initialize Account</h2>
+      <form id="registerForm">
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; margin-bottom: 10px; color: var(--text-light);">Alias (Name)</label>
+          <input type="text" class="pro-input" required placeholder="V">
+        </div>
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; margin-bottom: 10px; color: var(--text-light);">Signal (Email)</label>
+          <input type="email" class="pro-input" required placeholder="new@grid.com">
+        </div>
+        <div style="margin-bottom: 30px;">
+          <label style="display: block; margin-bottom: 10px; color: var(--text-light);">Access Code (Password)</label>
+          <input type="password" class="pro-input" required placeholder="••••••••">
+        </div>
+        <button type="submit" class="btn-pro btn-outline" style="width: 100%; padding: 15px; font-size: 16px;">
+          CREATE IDENTITY
+        </button>
+      </form>
+    </div>
+
+  </div>
+
+  <!-- DYNAMIC FOOTER PLACEHOLDER -->
+  <div id="footer-placeholder"></div>
+
+  <!-- Scripts -->
+  <script src="JS files/main.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Mock Auth Logic
+      document.getElementById('loginForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const email = document.getElementById('loginEmail').value;
+        // Mock save user to localStorage
+        localStorage.setItem('userAuth', JSON.stringify({ email: email, name: email.split('@')[0], isLoggedIn: true }));
+        showToast('Authentication Successful. Redirecting...', 'success');
+        setTimeout(() => { window.location.href = "profile.html"; }, 1000);
+      });
+
+      document.getElementById('registerForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        showToast('Identity Created! Please login.', 'success');
+      });
+    });
+  </script>
+</body>
+</html>
+
+

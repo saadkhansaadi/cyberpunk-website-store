@@ -1,0 +1,330 @@
+/* ============================================
+   RESPONSIVE.CSS — Mobile-First Breakpoints
+   SoulThread Cyberpunk E-commerce
+   ============================================ */
+
+/* ----- MOBILE NAV (Hamburger) ----- */
+#hamburger-btn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 1100;
+}
+
+.mobile-nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(9, 9, 11, 0.97);
+  z-index: 1050;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-nav-overlay.active {
+  display: flex;
+  opacity: 1;
+}
+
+.mobile-nav-overlay a {
+  color: var(--text-light);
+  text-decoration: none;
+  font-size: 24px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transition: color 0.3s;
+}
+
+.mobile-nav-overlay a:hover {
+  color: var(--primary);
+}
+
+.mobile-nav-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: var(--text-light);
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* ===========================
+   SMALL MOBILE (480px)
+   =========================== */
+@media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: clamp(2rem, 8vw, 3rem) !important;
+  }
+
+  .hero-content p {
+    font-size: 14px !important;
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .hero-buttons .btn-pro {
+    width: 100%;
+    text-align: center;
+  }
+
+  .section-title {
+    font-size: 28px !important;
+  }
+
+  .section {
+    padding: 60px 15px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+
+  .pro-card img {
+    height: 220px;
+  }
+
+  .testimonial-item {
+    min-width: 280px !important;
+  }
+
+  .big-marquee-text {
+    font-size: 20px !important;
+  }
+
+  .big-marquee-wrapper.outline .big-marquee-text {
+    font-size: 30px !important;
+  }
+
+  .faq-question {
+    font-size: 15px;
+    padding: 15px 20px;
+  }
+
+  .fomo-alert {
+    max-width: calc(100vw - 40px);
+    left: 10px;
+    right: 10px;
+  }
+
+  /* Shop sidebar */
+  .shop-layout {
+    flex-direction: column !important;
+  }
+
+  .shop-sidebar {
+    min-width: 100% !important;
+    flex: unset !important;
+  }
+
+  /* Cart items */
+  .cart-item-card {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+  }
+
+  /* Product detail */
+  .product-grid {
+    grid-template-columns: 1fr !important;
+    gap: 30px !important;
+  }
+
+  /* Auth grid */
+  .auth-grid {
+    grid-template-columns: 1fr !important;
+    margin: 60px auto !important;
+  }
+
+  /* Dashboard */
+  .dashboard-grid {
+    grid-template-columns: 1fr !important;
+    margin: 60px auto !important;
+  }
+
+  /* Checkout */
+  .checkout-grid {
+    grid-template-columns: 1fr !important;
+    margin: 60px auto !important;
+  }
+
+  /* Promo blocks */
+  .promo-block,
+  .promo-block.reverse {
+    flex-direction: column !important;
+    gap: 20px !important;
+    margin: 40px auto !important;
+  }
+
+  .promo-text h2 {
+    font-size: 28px !important;
+  }
+
+  /* Commission wizard */
+  .wizard-step-grid {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  /* Countdown */
+  .countdown {
+    gap: 10px;
+  }
+
+  .time-box {
+    padding: 15px 20px;
+  }
+
+  .time-box h2 {
+    font-size: 24px;
+  }
+
+  /* Filter pills on mobile */
+  .filter-pills {
+    flex-wrap: wrap;
+  }
+}
+
+/* ===========================
+   TABLET (768px)
+   =========================== */
+@media (max-width: 768px) {
+  /* Hide desktop nav, show hamburger */
+  .nav-links {
+    display: none !important;
+  }
+
+  #hamburger-btn {
+    display: block !important;
+  }
+
+  .search-container {
+    display: none !important;
+  }
+
+  .nav-container {
+    padding: 15px 20px;
+  }
+
+  .header {
+    top: 0 !important;
+  }
+
+  .top-bar {
+    display: none;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2rem, 6vw, 3.5rem) !important;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .section-title {
+    font-size: 32px !important;
+    margin-bottom: 40px !important;
+  }
+
+  .section {
+    padding: 80px 15px;
+  }
+
+  .testimonial-slider {
+    gap: 20px;
+  }
+
+  /* Shop layout */
+  .shop-layout {
+    flex-direction: column !important;
+  }
+
+  .shop-sidebar {
+    min-width: 100% !important;
+    flex: unset !important;
+  }
+
+  /* Contact layout */
+  .contact-layout {
+    flex-direction: column !important;
+  }
+
+  /* Customize layout */
+  .customize-layout {
+    flex-direction: column !important;
+  }
+
+  /* Promo blocks */
+  .promo-block,
+  .promo-block.reverse {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 30px !important;
+    margin: 60px auto !important;
+  }
+
+  /* Gallery mode on tablet = 2 columns */
+  .gallery-mode {
+    columns: 2 !important;
+  }
+}
+
+/* ===========================
+   DESKTOP (1024px)
+   =========================== */
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+
+  .gallery-mode {
+    columns: 3;
+    column-gap: 16px;
+  }
+}
+
+/* ===========================
+   LARGE DESKTOP (1400px+)
+   =========================== */
+@media (min-width: 1400px) {
+  .section {
+    max-width: 1400px;
+  }
+}
+
+/* ----- Tap Target Minimums ----- */
+@media (max-width: 768px) {
+  button,
+  .btn-pro,
+  a.btn-pro,
+  .size-btn,
+  .faq-question,
+  select.pro-input {
+    min-height: 44px;
+  }
+
+  /* Cards: remove hover transforms on touch */
+  .pro-card:hover {
+    transform: none;
+  }
+
+  /* Cursor effects: hide on mobile */
+  #cursor-glow,
+  #cursor-dot {
+    display: none !important;
+  }
+}

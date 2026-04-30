@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulThread | The Syndicate - Loyalty Node</title>
+  <link rel="icon" type="image/svg+xml" href="Assets/favicon.svg">
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="CSS/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    .syndicate-hero {
+        padding: 150px 20px 100px;
+        text-align: center;
+        background: radial-gradient(circle at center, rgba(139, 92, 246, 0.1), transparent);
+    }
+    .tier-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto 100px;
+        padding: 0 20px;
+    }
+    .tier-card {
+        padding: 50px 40px;
+        border-radius: 32px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--border-light);
+        transition: 0.5s;
+        position: relative;
+        overflow: hidden;
+    }
+    .tier-card:hover {
+        transform: translateY(-15px);
+        background: rgba(255,255,255,0.05);
+        border-color: var(--primary);
+    }
+    .tier-card.pro {
+        border-color: var(--primary);
+        box-shadow: 0 0 50px rgba(139, 92, 246, 0.2);
+    }
+    .benefit-list {
+        list-style: none;
+        padding: 0;
+        margin: 30px 0;
+        text-align: left;
+    }
+    .benefit-list li {
+        margin-bottom: 15px;
+        font-size: 14px;
+        color: var(--text-muted);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .benefit-list li i {
+        color: var(--primary);
+        font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="navbar-placeholder"></div>
+
+  <section class="syndicate-hero reveal">
+    <h4 style="color: var(--primary); letter-spacing: 10px; margin-bottom: 20px;">ACCESS LEVEL: RESTRICTED</h4>
+    <h1 style="font-size: clamp(3rem, 6vw, 5rem); margin-bottom: 20px;">The <span class="text-gradient">Syndicate.</span></h1>
+    <p style="color: var(--text-muted); max-width: 600px; margin: auto; font-size: 18px;">Join the elite network of SoulThread. Earn digital credits, unlock hidden drops, and secure your place in the grid.</p>
+  </section>
+
+  <div class="tier-grid">
+    
+    <!-- Tier 1 -->
+    <div class="tier-card reveal">
+        <h3 style="margin-bottom: 10px;">GHOST</h3>
+        <div style="font-size: 12px; color: var(--primary); letter-spacing: 2px; margin-bottom: 30px;">LEVEL_01</div>
+        <div style="font-size: 40px; font-weight: 800; margin-bottom: 10px;">FREE</div>
+        <p style="font-size: 12px; color: var(--text-muted);">Initial connection to the grid.</p>
+        
+        <ul class="benefit-list">
+            <li><i class="fa-solid fa-check-double"></i> Early Access to Standard Drops</li>
+            <li><i class="fa-solid fa-check-double"></i> Digital Credit Accumulation</li>
+            <li><i class="fa-solid fa-check-double"></i> Newsletter Intel</li>
+        </ul>
+        <button class="btn-pro" style="width: 100%; border-radius: 12px;">INITIALIZE LINK</button>
+    </div>
+
+    <!-- Tier 2 -->
+    <div class="tier-card reveal pro" style="background: rgba(139, 92, 246, 0.05);">
+        <div style="position: absolute; top: 20px; right: 20px; background: var(--primary); color: #fff; font-size: 9px; padding: 4px 10px; border-radius: 20px; letter-spacing: 1px;">MOST ACTIVE</div>
+        <h3 style="margin-bottom: 10px;">PHANTOM</h3>
+        <div style="font-size: 12px; color: var(--secondary); letter-spacing: 2px; margin-bottom: 30px;">LEVEL_02</div>
+        <div style="font-size: 40px; font-weight: 800; margin-bottom: 10px;">$15<span style="font-size: 16px; opacity: 0.5;">/MO</span></div>
+        <p style="font-size: 12px; color: var(--text-muted);">Enhanced operational clearance.</p>
+        
+        <ul class="benefit-list">
+            <li><i class="fa-solid fa-check-double"></i> 12h Early Access to Limited Drops</li>
+            <li><i class="fa-solid fa-check-double"></i> 2x Digital Credit Multiplier</li>
+            <li><i class="fa-solid fa-check-double"></i> Exclusive "Phanton-Only" Art</li>
+            <li><i class="fa-solid fa-check-double"></i> Free Global Shipping Protocol</li>
+        </ul>
+        <button class="btn-pro btn-glow" style="width: 100%; border-radius: 12px;">AUTHORIZE CLEARANCE</button>
+    </div>
+
+    <!-- Tier 3 -->
+    <div class="tier-card reveal">
+        <h3 style="margin-bottom: 10px;">SPECTRE</h3>
+        <div style="font-size: 12px; color: var(--accent); letter-spacing: 2px; margin-bottom: 30px;">LEVEL_03</div>
+        <div style="font-size: 40px; font-weight: 800; margin-bottom: 10px;">$49<span style="font-size: 16px; opacity: 0.5;">/MO</span></div>
+        <p style="font-size: 12px; color: var(--text-muted);">Elite shadow node status.</p>
+        
+        <ul class="benefit-list">
+            <li><i class="fa-solid fa-check-double"></i> 24h Early Access to All Drops</li>
+            <li><i class="fa-solid fa-check-double"></i> 5x Digital Credit Multiplier</li>
+            <li><i class="fa-solid fa-check-double"></i> One-on-One Custom Art Consult</li>
+            <li><i class="fa-solid fa-check-double"></i> Lifetime "The Forge" Access</li>
+            <li><i class="fa-solid fa-check-double"></i> Annual Physical Asset Drop</li>
+        </ul>
+        <button class="btn-pro" style="width: 100%; border-radius: 12px;">ASCEND TO SPECTRE</button>
+    </div>
+
+  </div>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="JS files/main.js"></script>
+</body>
+
+</html>
+

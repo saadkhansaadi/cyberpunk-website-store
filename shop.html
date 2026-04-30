@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulThread | Shop The Grid</title>
+  <link rel="icon" type="image/svg+xml" href="Assets/favicon.svg">
+
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="CSS/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- DYNAMIC NAVBAR PLACEHOLDER -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- ==============================
+       SHOP HERO SECTION 
+  =============================== -->
+  <section class="hero-wrapper"
+    style="min-height: 50vh; background-image: url('products/hero_bg_1777238662886.png'); background-position: center bottom;">
+    <div class="hero-content">
+      <h1 style="font-size: clamp(2.5rem, 4vw, 4rem);">The <span class="text-gradient">Arsenal</span></h1>
+      <p>Browse our entire collection of cyberpunk apparel, digital art, and limited edition drops.</p>
+    </div>
+  </section>
+
+  <!-- ==============================
+       SHOP MAIN CONTENT
+  =============================== -->
+  <section class="section" style="padding-top: 60px;">
+    <div style="display: flex; gap: 40px; align-items: flex-start; flex-wrap: wrap;">
+
+      <!-- SIDEBAR FILTERS -->
+      <aside class="shop-sidebar"
+        style="flex: 1; min-width: 250px; background: rgba(255,255,255,0.02); padding: 30px; border-radius: 16px; border: 1px solid var(--border-light);">
+        
+        <h3 style="margin-bottom: 20px; font-size: 20px;">Categories</h3>
+        <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px;" id="category-filters" class="filter-list">
+          <li><a href="#" class="active" onclick="filterCategory('All', this)">All Gear</a></li>
+          <li><a href="#" onclick="filterCategory('Apparel', this)">Apparel</a></li>
+          <li><a href="#" onclick="filterCategory('Prints & Decor', this)">Prints & Decor</a></li>
+          <li><a href="#" onclick="filterCategory('Gaming & Lifestyle', this)">Gaming & Lifestyle</a></li>
+          <li><a href="#" onclick="filterCategory('Accessories', this)">Accessories</a></li>
+          <li><a href="#" onclick="filterCategory('Custom Services', this)">Custom Services</a></li>
+        </ul>
+
+        <h3 style="margin-top: 40px; margin-bottom: 20px; font-size: 20px;">Price Range</h3>
+        <input type="range" id="price-range" min="0" max="500" value="500" style="width: 100%; accent-color: var(--primary);">
+        <div style="display: flex; justify-content: space-between; margin-top: 10px; color: var(--text-muted); font-size: 14px;">
+          <span>$0</span>
+          <span id="price-display">$500</span>
+        </div>
+      </aside>
+
+      <!-- PRODUCT GRID -->
+      <main style="flex: 3; min-width: 300px;">
+        <h2 id="searchResultsTitle" style="display: none; margin-bottom: 20px; font-size: 28px;">Search Results for <span class="text-gradient" id="searchQueryText"></span></h2>
+        
+        <!-- Filter Pills -->
+        <div id="filter-pills" class="filter-pills"></div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; flex-wrap: wrap; gap: 15px;">
+          <p style="color: var(--text-muted);" id="productCountText">Showing products</p>
+          
+          <div style="display: flex; align-items: center; gap: 15px;">
+            <!-- Layout Toggle -->
+            <div class="layout-toggle">
+              <button id="layout-grid" class="active" title="Grid View"><i class="fa-solid fa-grid-2"></i></button>
+              <button id="layout-gallery" title="Gallery View"><i class="fa-solid fa-table-cells-large"></i></button>
+            </div>
+            
+            <!-- Sort -->
+            <select class="pro-input" id="sort-select" style="width: auto; padding: 10px; background: rgba(0,0,0,0.8);">
+              <option value="latest">Sort by: Latest</option>
+              <option value="price-asc">Price: Low to High</option>
+              <option value="price-desc">Price: High to Low</option>
+              <option value="name-az">Name: A-Z</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- DYNAMIC SHOP GRID -->
+        <div class="grid" id="shop-grid">
+          <!-- Populated by shop.js -->
+        </div>
+
+        <div id="no-results" style="display: none; text-align: center; padding: 50px 0; color: var(--text-muted);">
+          <i class="fa-solid fa-ghost" style="font-size: 40px; margin-bottom: 20px;"></i>
+          <h3>No assets match your query.</h3>
+        </div>
+
+        <div style="text-align: center; margin-top: 60px;">
+          <button class="btn-pro btn-outline" id="load-more-btn">Load More Gear</button>
+        </div>
+
+      </main>
+    </div>
+  </section>
+
+  <!-- DYNAMIC FOOTER PLACEHOLDER -->
+  <div id="footer-placeholder"></div>
+
+  <script src="JS files/main.js"></script>
+  <script src="JS files/products.js"></script>
+  <script src="JS files/cart.js"></script>
+  <script src="JS files/shop.js"></script>
+</body>
+
+</html>
+

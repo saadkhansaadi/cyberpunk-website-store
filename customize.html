@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulThread | Commission Art</title>
+  <link rel="icon" type="image/svg+xml" href="Assets/favicon.svg">
+
+  <link rel="stylesheet" href="CSS/style.css">
+  <link rel="stylesheet" href="CSS/responsive.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+  <!-- DYNAMIC NAVBAR PLACEHOLDER -->
+  <div id="navbar-placeholder"></div>
+
+  <!-- ==============================
+       CUSTOMIZE HERO SECTION 
+  =============================== -->
+  <section class="hero-wrapper scanline-overlay" style="min-height: 50vh; background-image: url('products/hero_bg_1777238662886.png'); background-position: center top;">
+    <div class="hero-content">
+      <h1 style="font-size: clamp(2.5rem, 4vw, 4rem);">Commission <span class="text-gradient">Custom Art</span></h1>
+      <p>Born in Pixels. Lives on Your Wall. Transform your vision into an 8K digital masterpiece.</p>
+      <div style="display:flex;gap:10px;justify-content:center;margin-top:20px;flex-wrap:wrap;">
+        <span class="art-badge badge-digital"><i class="fa-solid fa-pen-nib"></i> Created Digitally</span>
+        <span class="art-badge badge-resolution">8K · 300 DPI</span>
+        <span class="art-badge badge-color-profile"><i class="fa-solid fa-circle-half-stroke"></i> Adobe RGB</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       COMMISSION WIZARD
+  =============================== -->
+  <section class="section" style="padding-top: 60px;">
+    <div id="wizard-container" style="max-width: 800px; margin: auto;">
+      <!-- Populated by customize.js -->
+      <div style="text-align: center; padding: 80px;">
+        <i class="fa-solid fa-spinner fa-spin fa-2x" style="color: var(--primary);"></i>
+        <p style="color: var(--text-muted); margin-top: 15px;">Loading Commission Wizard...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==============================
+       URGENCY WIDGET
+  =============================== -->
+  <section class="section" style="padding-top: 0;">
+    <div class="urgency-widget reveal">
+      <h4 style="margin-bottom:5px;color:var(--text-light);">Commission Slots This Month</h4>
+      <div class="urgency-dots" id="urgency-dots"></div>
+      <p style="font-size:13px;color:var(--text-muted);" id="urgency-text">Loading...</p>
+      <p style="font-size:12px;color:var(--primary);margin-top:10px;" id="urgency-viewers"></p>
+    </div>
+  </section>
+
+  <!-- ==============================
+       PROCESS STEPS
+  =============================== -->
+  <section class="section" style="padding-top: 20px;">
+    <h2 class="section-title reveal">Our <span class="text-gradient">Process</span></h2>
+    <div class="grid" style="max-width: 1000px; margin: auto;">
+      <div class="pro-card reveal" style="text-align:center;">
+        <i class="fa-solid fa-lightbulb" style="font-size:36px;color:var(--primary);margin-bottom:15px;"></i>
+        <h3>1. Conceived</h3>
+        <p>You describe your vision. Our artists conceptualize the artwork.</p>
+      </div>
+      <div class="pro-card reveal" style="text-align:center;transition-delay:0.1s;">
+        <i class="fa-solid fa-computer" style="font-size:36px;color:var(--secondary);margin-bottom:15px;"></i>
+        <h3>2. Rendered</h3>
+        <p>Hand-painted digitally at 8K resolution with Adobe RGB wide gamut.</p>
+      </div>
+      <div class="pro-card reveal" style="text-align:center;transition-delay:0.2s;">
+        <i class="fa-solid fa-print" style="font-size:36px;color:var(--accent);margin-bottom:15px;"></i>
+        <h3>3. Printed</h3>
+        <p>Museum-grade canvas print with archival inks. Built to last decades.</p>
+      </div>
+      <div class="pro-card reveal" style="text-align:center;transition-delay:0.3s;">
+        <i class="fa-solid fa-truck-fast" style="font-size:36px;color:#eab308;margin-bottom:15px;"></i>
+        <h3>4. Shipped</h3>
+        <p>Carefully packaged and delivered worldwide with tracking.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DYNAMIC FOOTER PLACEHOLDER -->
+  <div id="footer-placeholder"></div>
+
+  <script src="JS files/main.js"></script>
+  <script src="JS files/customize.js"></script>
+  <script>
+    // Commission Urgency Widget
+    document.addEventListener('DOMContentLoaded', () => {
+      const totalSlots = 5;
+      let slotsKey = 'st_commission_slots';
+      let lastVisitKey = 'st_last_visit';
+
+      let available = parseInt(localStorage.getItem(slotsKey));
+      if (isNaN(available)) available = 3;
+
+      // Decrement if last visit > 1hr ago
+      const lastVisit = parseInt(localStorage.getItem(lastVisitKey)) || 0;
+      const now = Date.now();
+      if (now - lastVisit > 3600000 && available > 1) {
+        available--;
+        localStorage.setItem(slotsKey, available);
+      }
+      localStorage.setItem(lastVisitKey, now);
+
+      const taken = totalSlots - available;
+      const dotsContainer = document.getElementById('urgency-dots');
+      const urgencyText = document.getElementById('urgency-text');
+      const viewersEl = document.getElementById('urgency-viewers');
+
+      if (dotsContainer) {
+        let dotsHTML = '';
+        for (let i = 0; i < totalSlots; i++) {
+          if (i < taken) {
+            dotsHTML += '<div class="urgency-dot taken"></div>';
+          } else if (i === taken && available === 1) {
+            dotsHTML += '<div class="urgency-dot last"></div>';
+          } else {
+            dotsHTML += '<div class="urgency-dot available"></div>';
+          }
+        }
+        dotsContainer.innerHTML = dotsHTML;
+      }
+
+      if (urgencyText) {
+        if (available <= 1) {
+          urgencyText.innerHTML = `<strong style="color:#ef4444;">LAST SLOT!</strong> ${available} of ${totalSlots} remaining`;
+        } else {
+          urgencyText.textContent = `${available} of ${totalSlots} slots remaining`;
+        }
+      }
+
+      // Viewers count
+      let viewers = parseInt(sessionStorage.getItem('st_viewers'));
+      if (isNaN(viewers)) {
+        viewers = Math.floor(Math.random() * 4) + 2;
+        sessionStorage.setItem('st_viewers', viewers);
+      }
+      if (viewersEl) {
+        viewersEl.innerHTML = `<i class="fa-solid fa-eye"></i> ${viewers} people viewing commission info right now`;
+      }
+      setInterval(() => {
+        viewers = Math.max(1, viewers + (Math.random() > 0.5 ? 1 : -1));
+        viewers = Math.min(viewers, 6);
+        sessionStorage.setItem('st_viewers', viewers);
+        if (viewersEl) viewersEl.innerHTML = `<i class="fa-solid fa-eye"></i> ${viewers} people viewing commission info right now`;
+      }, 8000);
+    });
+  </script>
+</body>
+</html>
+
