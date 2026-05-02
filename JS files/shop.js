@@ -31,6 +31,19 @@ document.addEventListener('DOMContentLoaded', () => {
         buildFilterPills();
     }
 
+
+    // Category from URL param (from category cards)
+const catParam = new URLSearchParams(window.location.search).get('cat');
+if (catParam) {
+  currentCategory = catParam;
+  const matchLink = [...document.querySelectorAll('#category-filters a')]
+    .find(a => a.textContent.trim().toLowerCase().includes(catParam.toLowerCase()));
+  if (matchLink) {
+    document.querySelectorAll('#category-filters a').forEach(a => a.classList.remove('active'));
+    matchLink.classList.add('active');
+  }
+}
+
     // 3. Price range
     const priceRange = document.getElementById('price-range');
     const priceDisplay = document.getElementById('price-display');
