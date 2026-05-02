@@ -1,100 +1,132 @@
-<footer class="footer" style="background-image: linear-gradient(rgba(9, 9, 11, 0.85), rgba(9, 9, 11, 0.95)), url('products/hero_bg_1777238662886.png'); background-size: cover; background-position: center; background-attachment: fixed; border-top: 1px solid rgba(139, 92, 246, 0.3); position: relative;">
+<footer class="footer" style="background-image: linear-gradient(rgba(9,9,11,0.85), rgba(9,9,11,0.95)), url('products/hero_bg_1777238662886.png'); background-size: cover; background-position: center; background-attachment: fixed; border-top: 1px solid rgba(139,92,246,0.3); position: relative;">
+
+  <!-- NEWSLETTER BAR -->
+  <div class="newsletter-bar">
+    <div class="newsletter-content">
+      <div>
+        <h4 class="newsletter-title"><i class="fa-solid fa-satellite-dish" style="color:var(--primary);margin-right:10px;"></i>Join The Grid</h4>
+        <p class="newsletter-sub">Get 10% off your first order + early access to limited drops.</p>
+      </div>
+      <div class="newsletter-form">
+        <input type="email" id="newsletterEmail" class="newsletter-input" placeholder="Enter your digital identifier...">
+        <button class="btn-pro btn-glow newsletter-btn" onclick="subscribeNewsletter()">
+          <i class="fa-solid fa-paper-plane"></i> Subscribe
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN FOOTER GRID -->
   <div class="footer-grid">
-    
+
     <!-- Brand Info -->
-    <div style="flex: 1.5; padding-right: 20px;">
-      <a href="index.html" class="logo" style="display: inline-block; margin-bottom: 20px;">
-        <img src="Assets/logo.svg" alt="SoulThread Logo" style="height: 45px;">
+    <div class="footer-brand">
+      <a href="index.html" class="logo" style="display:inline-block;margin-bottom:20px;">
+        <img src="Assets/logo.svg" alt="SoulThread Logo" style="height:45px;">
       </a>
-      <p style="font-size: 14px; margin-bottom: 20px;">Where high-end fashion meets the neon grid. We bridge the gap between physical streetwear and digital identity.</p>
-      <div class="social-icons" style="display: flex; gap: 15px;">
-        <a href="#" class="social-icon instagram"><i class="fa-brands fa-instagram"></i></a>
-        <a href="#" class="social-icon twitter"><i class="fa-brands fa-twitter"></i></a>
-        <a href="#" class="social-icon discord"><i class="fa-brands fa-discord"></i></a>
+      <p class="footer-desc">Where high-end fashion meets the neon grid. We bridge the gap between physical streetwear and digital identity.</p>
+      <div class="social-icons">
+        <a href="#" class="social-icon instagram" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" class="social-icon twitter" title="Twitter"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#" class="social-icon discord" title="Discord"><i class="fa-brands fa-discord"></i></a>
+        <a href="#" class="social-icon" title="TikTok" style="color:var(--text-muted);font-size:18px;transition:color 0.3s;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='var(--text-muted)'"><i class="fa-brands fa-tiktok"></i></a>
       </div>
     </div>
 
     <!-- Quick Links -->
-    <div style="flex: 1;">
-      <h4 style="color: #fff; margin-bottom: 20px;">Database Links</h4>
-      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
-        <li><a href="shop.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;">Shop Apparel</a></li>
-        <li><a href="customize.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;">Commission Art</a></li>
-        <li><a href="story.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;">Our Story</a></li>
-        <li><a href="branding.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;">Visual Identity</a></li>
+    <div class="footer-col">
+      <h4 class="footer-col-title">Database Links</h4>
+      <ul class="footer-links">
+        <li><a href="index.html">Home Base</a></li>
+        <li><a href="shop.html">Shop Apparel</a></li>
+        <li><a href="shop.html?search=prints">Art Prints</a></li>
+        <li><a href="customize.html">Commission Art</a></li>
+        <li><a href="offers.html">Active Offers</a></li>
+        <li><a href="about.html">Our Story</a></li>
       </ul>
     </div>
 
     <!-- Support -->
-    <div style="flex: 1;">
-      <h4 style="color: #fff; margin-bottom: 20px;">Support Systems</h4>
-      <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px;">
-        <li><a href="shipping.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;">Shipping Protocols</a></li>
-        <li><a href="returns.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;">Return Policies</a></li>
-        <li><a href="index.html#faq" style="color: var(--text-muted); text-decoration: none; transition: color 0.3s;">FAQ Terminal</a></li>
-        <li style="margin-top: 10px; color: var(--primary); font-size: 13px;"><i class="fa-brands fa-whatsapp"></i> 03367877064</li>
+    <div class="footer-col">
+      <h4 class="footer-col-title">Support Systems</h4>
+      <ul class="footer-links">
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="index.html#faq">FAQ Terminal</a></li>
+        <li><a href="profile.html">My Account</a></li>
+        <li><a href="cart.html">My Cart</a></li>
+        <li><a href="#" onclick="showToast('Shipping info coming soon!','info')">Shipping Info</a></li>
+        <li><a href="#" onclick="showToast('Return policy: 14 days on unworn items','info')">Return Policy</a></li>
       </ul>
+      <div style="margin-top:15px;">
+        <a href="https://wa.me/923367877064" target="_blank" class="whatsapp-link">
+          <i class="fa-brands fa-whatsapp"></i> WhatsApp Support
+        </a>
+      </div>
     </div>
 
-    <!-- Communication Nodes -->
-    <div style="flex: 1.2;">
-        <h4 style="color: #fff; margin-bottom: 20px;">Communication Nodes</h4>
-        <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; font-size: 12px;">
-            <li><span style="color: var(--text-muted);">SALES:</span> <a href="mailto:sales@soulthread-corp.com" style="color: var(--primary); text-decoration: none;">sales@soulthread-corp.com</a></li>
-            <li><span style="color: var(--text-muted);">COLLAB:</span> <a href="mailto:collab@soulthread-corp.com" style="color: var(--primary); text-decoration: none;">collab@soulthread-corp.com</a></li>
-            <li><span style="color: var(--text-muted);">HIRING:</span> <a href="mailto:hiring@soulthread-corp.com" style="color: var(--primary); text-decoration: none;">hiring@soulthread-corp.com</a></li>
-            <li><span style="color: var(--text-muted);">INFO:</span> <a href="mailto:info@soulthread-corp.com" style="color: var(--primary); text-decoration: none;">info@soulthread-corp.com</a></li>
-        </ul>
+    <!-- Contact Nodes -->
+    <div class="footer-col">
+      <h4 class="footer-col-title">Communication Nodes</h4>
+      <ul class="footer-links" style="font-size:12px;">
+        <li><span style="color:var(--text-muted);margin-right:6px;">SALES:</span><a href="mailto:sales@soulthread-corp.com">sales@soulthread-corp.com</a></li>
+        <li><span style="color:var(--text-muted);margin-right:6px;">COLLAB:</span><a href="mailto:collab@soulthread-corp.com">collab@soulthread-corp.com</a></li>
+        <li><span style="color:var(--text-muted);margin-right:6px;">HIRING:</span><a href="mailto:hiring@soulthread-corp.com">hiring@soulthread-corp.com</a></li>
+        <li><span style="color:var(--text-muted);margin-right:6px;">INFO:</span><a href="mailto:info@soulthread-corp.com">info@soulthread-corp.com</a></li>
+      </ul>
+      <div style="margin-top:20px;">
+        <p style="font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px;">Location</p>
+        <p style="font-size:13px;color:var(--text-light);"><i class="fa-solid fa-location-dot" style="color:var(--primary);margin-right:6px;"></i>Sindh, Karachi, Pakistan</p>
+      </div>
     </div>
 
   </div>
-  
-  <div style="text-align: center; margin-top: 40px; padding: 20px; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 12px; letter-spacing: 2px;">
-    SINDH, KARACHI, PAKISTAN // OPERATIONAL HUB
-  </div>
 
-  <!-- Authorized Payment & Security Nodes -->
-  <div style="max-width: 1200px; margin: 40px auto 0; padding: 30px 20px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 40px;">
-    
-    <div style="flex: 2; min-width: 300px;">
-        <h4 style="color: rgba(255,255,255,0.3); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px;">Authorized Payment Nodes</h4>
-        <div class="payment-reveal-grid" style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap; font-family: 'Space Grotesk'; font-weight: 800; font-size: 14px; letter-spacing: 2px; color: rgba(255,255,255,0.4);">
-          <span style="transition: 0.3s; cursor: pointer;" onmouseover="this.style.color='#003087'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">PAYPAL</span>
-          <span style="color: rgba(255,255,255,0.1);">//</span>
-          <span style="transition: 0.3s; cursor: pointer;" onmouseover="this.style.color='#6772E5'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">STRIPE</span>
-          <span style="color: rgba(255,255,255,0.1);">//</span>
-          <span style="transition: 0.3s; cursor: pointer;" onmouseover="this.style.color='#EB001B'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">MASTERCARD</span>
-          <span style="color: rgba(255,255,255,0.1);">//</span>
-          <span style="transition: 0.3s; cursor: pointer;" onmouseover="this.style.color='#1A1F71'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">VISA</span>
-          <span style="color: rgba(255,255,255,0.1);">//</span>
-          <span style="transition: 0.3s; cursor: pointer;" onmouseover="this.style.color='#000000'; this.style.textShadow='0 0 10px white'" onmouseout="this.style.color='rgba(255,255,255,0.4)'; this.style.textShadow='none'">APPLE PAY</span>
-          <span style="color: rgba(255,255,255,0.1);">//</span>
-          <span style="transition: 0.3s; cursor: pointer;" onmouseover="this.style.color='#10B981'" onmouseout="this.style.color='rgba(255,255,255,0.4)'">PAYPAK</span>
+  <!-- PAYMENT NODES -->
+  <div class="footer-payment-section">
+    <div class="footer-payment-left">
+      <h4 class="footer-payment-label">Authorized Payment Nodes</h4>
+      <div class="payment-reveal-grid">
+        <span class="payment-node" data-color="#003087">PAYPAL</span>
+        <span class="payment-sep">//</span>
+        <span class="payment-node" data-color="#6772E5">STRIPE</span>
+        <span class="payment-sep">//</span>
+        <span class="payment-node" data-color="#EB001B">MASTERCARD</span>
+        <span class="payment-sep">//</span>
+        <span class="payment-node" data-color="#1A1F71">VISA</span>
+        <span class="payment-sep">//</span>
+        <span class="payment-node" data-color="#555">APPLE PAY</span>
+        <span class="payment-sep">//</span>
+        <span class="payment-node" data-color="#10B981">PAYPAK</span>
+      </div>
+    </div>
+    <div class="footer-security">
+      <h4 class="footer-payment-label">Security Protocols</h4>
+      <div class="security-badges">
+        <div class="security-badge">
+          <i class="fa-solid fa-shield-halved" style="color:var(--accent);"></i>
+          <span>SSL SECURE</span>
         </div>
-    </div>
-
-    <div style="flex: 1; min-width: 250px; border-left: 1px solid rgba(255,255,255,0.05); padding-left: 40px;">
-        <h4 style="color: rgba(255,255,255,0.3); font-size: 11px; text-transform: uppercase; letter-spacing: 3px; margin-bottom: 20px;">Security Protocols</h4>
-        <div style="display: flex; gap: 20px; align-items: center; color: rgba(255,255,255,0.3); font-size: 12px;">
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <i class="fa-solid fa-shield-halved" style="color: var(--accent);"></i>
-                <span>SSL SECURE</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 8px;">
-                <i class="fa-solid fa-lock" style="color: var(--primary);"></i>
-                <span>PCI DSS</span>
-            </div>
+        <div class="security-badge">
+          <i class="fa-solid fa-lock" style="color:var(--primary);"></i>
+          <span>PCI DSS</span>
         </div>
+        <div class="security-badge">
+          <i class="fa-solid fa-rotate" style="color:#eab308;"></i>
+          <span>14-DAY RETURNS</span>
+        </div>
+      </div>
     </div>
-
   </div>
-  
-  <div class="footer-bottom-v2" style="margin-top: 60px; padding-top: 40px; border-top: 1px solid rgba(139, 92, 246, 0.2); text-align: center; position: relative;">
-    <div class="footer-glow-line" style="position: absolute; top: -1px; left: 50%; transform: translateX(-50%); width: 100px; height: 2px; background: var(--primary); box-shadow: 0 0 20px var(--primary);"></div>
-    <p style="color: var(--text-muted); font-size: 14px; letter-spacing: 1px; text-transform: uppercase;">
-      © <span id="currentYear"></span> <span class="text-gradient" style="font-weight: bold;">SoulThread Corporation.</span> All systems operational.
+
+  <!-- FOOTER BOTTOM -->
+  <div class="footer-bottom-v2">
+    <div class="footer-glow-line"></div>
+    <p style="color:var(--text-muted);font-size:14px;letter-spacing:1px;text-transform:uppercase;">
+      © <span id="currentYear"></span>
+      <span class="text-gradient" style="font-weight:bold;">SoulThread Corporation.</span>
+      All systems operational.
     </p>
-    <div style="margin-top: 15px; display: flex; justify-content: center; gap: 20px; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: rgba(255,255,255,0.3);">
+    <div class="footer-bottom-meta">
       <span>Encrypted Session</span>
       <span>•</span>
       <span>Terminal v2.0.77</span>
@@ -102,8 +134,16 @@
       <span>Global Node Active</span>
     </div>
   </div>
+
 </footer>
 
 <script>
   document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+  // Payment node hover colors
+  document.querySelectorAll('.payment-node').forEach(el => {
+    const color = el.dataset.color;
+    el.addEventListener('mouseover', () => el.style.color = color);
+    el.addEventListener('mouseout',  () => el.style.color = 'rgba(255,255,255,0.4)');
+  });
 </script>
