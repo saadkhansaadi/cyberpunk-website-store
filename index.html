@@ -125,6 +125,85 @@
     </div>
   </section>
 
+
+
+<!-- ==============================
+     CATEGORY CARDS SECTION
+=============================== -->
+<section class="section" style="padding-top: 60px; padding-bottom: 60px;">
+  <div style="text-align: center; margin-bottom: 50px;">
+    <h4 style="color: var(--primary); letter-spacing: 8px; margin-bottom: 15px; text-transform: uppercase; font-size: 12px;">BROWSE BY SECTOR</h4>
+    <h2 class="section-title reveal">Shop by <span class="text-gradient">Category</span></h2>
+  </div>
+
+  <div class="category-cards-grid">
+
+    <a href="shop.html?cat=Apparel" class="category-card reveal" onclick="sessionStorage.setItem('shopCat','Apparel')">
+      <div class="category-card-img">
+        <img src="https://images.unsplash.com/photo-1556821840-3a63f95609a7?w=600&q=80" alt="Apparel">
+        <div class="category-card-overlay"></div>
+      </div>
+      <div class="category-card-info">
+        <span class="category-card-tag">SECTOR_01</span>
+        <h3>Apparel</h3>
+        <p>6 Items</p>
+      </div>
+    </a>
+
+    <a href="shop.html?cat=Prints & Decor" class="category-card reveal" style="transition-delay:0.08s;" onclick="sessionStorage.setItem('shopCat','Prints & Decor')">
+      <div class="category-card-img">
+        <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?w=600&q=80" alt="Prints">
+        <div class="category-card-overlay"></div>
+      </div>
+      <div class="category-card-info">
+        <span class="category-card-tag">SECTOR_02</span>
+        <h3>Prints & Decor</h3>
+        <p>5 Items</p>
+      </div>
+    </a>
+
+    <a href="shop.html?cat=Gaming & Lifestyle" class="category-card reveal" style="transition-delay:0.16s;" onclick="sessionStorage.setItem('shopCat','Gaming & Lifestyle')">
+      <div class="category-card-img">
+        <img src="https://images.unsplash.com/photo-1595225476474-87563907a212?w=600&q=80" alt="Gaming">
+        <div class="category-card-overlay"></div>
+      </div>
+      <div class="category-card-info">
+        <span class="category-card-tag">SECTOR_03</span>
+        <h3>Gaming & Lifestyle</h3>
+        <p>4 Items</p>
+      </div>
+    </a>
+
+    <a href="shop.html?cat=Accessories" class="category-card reveal" style="transition-delay:0.24s;" onclick="sessionStorage.setItem('shopCat','Accessories')">
+      <div class="category-card-img">
+        <img src="https://images.unsplash.com/photo-1517256011273-071dfa299144?w=600&q=80" alt="Accessories">
+        <div class="category-card-overlay"></div>
+      </div>
+      <div class="category-card-info">
+        <span class="category-card-tag">SECTOR_04</span>
+        <h3>Accessories</h3>
+        <p>3 Items</p>
+      </div>
+    </a>
+
+    <a href="customize.html" class="category-card reveal" style="transition-delay:0.32s;">
+      <div class="category-card-img">
+        <img src="https://images.unsplash.com/photo-1614850523296-d8c1af93d400?w=600&q=80" alt="Custom">
+        <div class="category-card-overlay" style="background: linear-gradient(to top, rgba(139,92,246,0.9), transparent);"></div>
+      </div>
+      <div class="category-card-info">
+        <span class="category-card-tag" style="background: var(--primary);">COMMISSION</span>
+        <h3>Custom Services</h3>
+        <p>From $150</p>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+  
+  
+
   <!-- ==============================
        TACTICAL GEAR GRID (AUTO-CYCLING)
   =============================== -->
@@ -387,6 +466,82 @@
         setInterval(cycleReleaseGrid, 8000); // Cycle every 8 seconds
     </script>
   </section>
+
+
+<!-- ==============================
+     DIGITAL → PHYSICAL SPLIT
+=============================== -->
+<section class="section digital-physical-section">
+  <div class="dp-container reveal">
+    <div class="dp-left">
+      <div class="dp-screen">
+        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80" alt="Digital Art" class="dp-img">
+        <div class="dp-screen-overlay">
+          <span class="art-badge badge-digital"><i class="fa-solid fa-pen-nib"></i> Created Digitally</span>
+          <span class="art-badge badge-resolution">8K · 300 DPI</span>
+        </div>
+        <div class="dp-label">ON SCREEN</div>
+      </div>
+    </div>
+
+    <div class="dp-divider">
+      <div class="dp-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+    </div>
+
+    <div class="dp-right">
+      <div class="dp-canvas">
+        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80" alt="Canvas Print" class="dp-img" style="filter: contrast(1.1) saturate(1.2);">
+        <div class="dp-canvas-frame"></div>
+        <div class="dp-label">ON YOUR WALL</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center; margin-top: 50px;">
+    <h2 class="reveal" style="font-size: clamp(1.8rem, 4vw, 3rem); margin-bottom: 15px;">
+      Born in <span class="text-gradient">Pixels.</span> Lives on Your <span class="text-gradient">Wall.</span>
+    </h2>
+    <p class="reveal" style="color: var(--text-muted); max-width: 500px; margin: 0 auto 30px; line-height: 1.7;">
+      Every artwork is conceived digitally at 8K resolution — then brought into the physical world as a premium museum-grade canvas print.
+    </p>
+    <a href="shop.html?cat=Prints & Decor" class="btn-pro btn-glow reveal" style="padding: 15px 40px;">
+      <i class="fa-solid fa-image"></i> Shop Art Prints
+    </a>
+  </div>
+</section>
+
+
+
+
+<!-- ==============================
+     DUAL PROMO BANNERS
+=============================== -->
+<section class="section" style="padding-top: 0;">
+  <div class="dual-promo-grid">
+
+    <div class="promo-banner promo-apparel reveal">
+      <div class="promo-content">
+        <span class="promo-tag">NEW SEASON</span>
+        <h3>Cyberpunk<br>Apparel Drop</h3>
+        <p>Premium streetwear engineered for the digital age.</p>
+        <a href="shop.html?cat=Apparel" class="btn-pro btn-glow" style="padding: 12px 28px; font-size: 13px;">Shop Apparel <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="promo-banner promo-commission reveal" style="transition-delay: 0.1s;">
+      <div class="promo-content">
+        <span class="promo-tag" style="background: var(--primary);">COMMISSION OPEN</span>
+        <h3>Custom Art<br>For Your Vision</h3>
+        <p>1-on-1 artist collaboration. 8K resolution. Delivered in days.</p>
+        <a href="customize.html" class="btn-pro btn-outline" style="padding: 12px 28px; font-size: 13px;">Start Commission <i class="fa-solid fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+  </div>
+</section>
+  
+
+  
 
   <!-- ==============================
        WHY CHOOSE SOULTHREAD
