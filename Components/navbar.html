@@ -1,72 +1,166 @@
 <!-- Header / Navbar -->
 <header class="header" id="navbar">
-  <!-- Top Bar -->
-  <div class="top-bar" style="overflow: hidden; white-space: nowrap; width: 100%; display: flex; padding: 10px 0; background: rgba(0,0,0,0.3); border-bottom: 1px solid rgba(255,255,255,0.05);">
-    <div style="display: inline-block; animation: scrollTrack 20s linear infinite;">
-      <span style="padding-right: 50px;">🚀 FREE WORLDWIDE DELIVERY ON ORDERS ABOVE $50 • NEW CYBERPUNK COLLECTION DROPPING SOON • PREMIUM APPAREL + DIGITAL ART</span>
-      <span style="padding-right: 50px;">🚀 FREE WORLDWIDE DELIVERY ON ORDERS ABOVE $50 • NEW CYBERPUNK COLLECTION DROPPING SOON • PREMIUM APPAREL + DIGITAL ART</span>
-      <span style="padding-right: 50px;">🚀 FREE WORLDWIDE DELIVERY ON ORDERS ABOVE $50 • NEW CYBERPUNK COLLECTION DROPPING SOON • PREMIUM APPAREL + DIGITAL ART</span>
+
+  <!-- ANNOUNCEMENT BAR -->
+  <div class="announcement-bar" id="announcementBar">
+    <div class="announcement-track">
+      <span>🚀 FREE WORLDWIDE DELIVERY ON ORDERS ABOVE $50</span>
+      <span>⚡ NEW CYBERPUNK COLLECTION DROPPING SOON</span>
+      <span>🎨 CUSTOM DIGITAL ART COMMISSIONS OPEN</span>
+      <span>💀 LIMITED EDITION DROPS — NEVER RESTOCKED</span>
+      <span>🚀 FREE WORLDWIDE DELIVERY ON ORDERS ABOVE $50</span>
+      <span>⚡ NEW CYBERPUNK COLLECTION DROPPING SOON</span>
+      <span>🎨 CUSTOM DIGITAL ART COMMISSIONS OPEN</span>
+      <span>💀 LIMITED EDITION DROPS — NEVER RESTOCKED</span>
     </div>
+    <button class="announcement-close" onclick="
+      document.getElementById('announcementBar').style.display='none';
+      sessionStorage.setItem('ann_closed','1');
+    ">×</button>
   </div>
-  <div class="nav-container" style="display: flex; align-items: center; justify-content: space-between;">
-    
+
+  <!-- MAIN NAV -->
+  <div class="nav-container">
+
     <!-- Logo -->
-    <a href="index.html" class="logo" style="display: flex; align-items: center;">
-      <img src="Assets/logo.svg" alt="SoulThread Logo" style="height: 45px;">
+    <a href="index.html" class="logo">
+      <img src="Assets/logo.svg" alt="SoulThread Logo" style="height:45px;">
     </a>
-    
-    <!-- Centered Nav Links -->
-    <ul class="nav-links" style="flex: 3; display: flex; justify-content: center; gap: 20px; margin: 0; padding: 0;">
-      <li><a href="index.html" class="nav-item" data-page="index.html">Home</a></li>
-      <li><a href="shop.html" class="nav-item" data-page="shop.html">Shop</a></li>
-      <li><a href="offers.html" class="nav-item text-gradient" data-page="offers.html" style="font-weight: bold;">Offers <i class="fa-solid fa-fire"></i></a></li>
-      <li><a href="forge.html" class="nav-item" data-page="forge.html" style="color: var(--primary); font-weight: bold;">The Forge</a></li>
+
+    <!-- Nav Links -->
+    <ul class="nav-links">
+      <li><a href="index.html"    class="nav-item" data-page="index.html">Home</a></li>
+      <li><a href="shop.html"     class="nav-item" data-page="shop.html">Shop</a></li>
+      <li><a href="offers.html"   class="nav-item text-gradient" data-page="offers.html" style="font-weight:bold;">Offers <i class="fa-solid fa-fire"></i></a></li>
+      <li><a href="customize.html" class="nav-item" data-page="customize.html" style="color:var(--primary);font-weight:bold;">Commission</a></li>
+      <li><a href="forge.html"    class="nav-item" data-page="forge.html" style="color:var(--primary);font-weight:bold;">The Forge</a></li>
       <li><a href="syndicate.html" class="nav-item" data-page="syndicate.html">Syndicate</a></li>
-      <li><a href="contact.html" class="nav-item" data-page="contact.html">Contact</a></li>
+      <li><a href="contact.html"  class="nav-item" data-page="contact.html">Contact</a></li>
     </ul>
 
-    <!-- E-commerce Features (Search, Wishlist, Profile, Cart) -->
-    <div style="flex: 1; display: flex; justify-content: flex-end; align-items: center; gap: 18px;">
-      
-      <!-- Search Bar -->
-      <div class="search-container" style="position: relative;">
-        <input type="text" id="navSearchInput" placeholder="Search gear..." style="background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.1); padding: 8px 15px; border-radius: 20px; color: #fff; font-family: 'Outfit'; outline: none; width: 150px; transition: width 0.3s;" onfocus="this.style.width='200px'" onblur="this.style.width='150px'" onkeydown="if(event.key === 'Enter') { location.href='shop.html?search=' + encodeURIComponent(this.value); }">
-        <i class="fa-solid fa-search" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none;"></i>
+    <!-- Right Icons -->
+    <div class="nav-icons">
+
+      <!-- Search -->
+      <div class="nav-search-wrap">
+        <input
+          type="text"
+          id="navSearchInput"
+          class="nav-search-input"
+          placeholder="Search gear..."
+          onkeydown="if(event.key==='Enter' && this.value.trim()){location.href='shop.html?search='+encodeURIComponent(this.value.trim());}"
+          onfocus="showSearchSuggestions()"
+          onblur="setTimeout(()=>hideSearchSuggestions(),200)"
+          oninput="filterSearchSuggestions(this.value)"
+        >
+        <i class="fa-solid fa-search nav-search-icon"></i>
+        <div class="search-dropdown" id="searchDropdown">
+          <div class="search-section-label">Recent Searches</div>
+          <div id="recentSearchesList"></div>
+          <div class="search-section-label" style="margin-top:8px;">Trending</div>
+          <div class="search-trending">
+            <span onclick="doSearch('Neon Hoodie')">Neon Hoodie</span>
+            <span onclick="doSearch('Digital Portrait')">Digital Portrait</span>
+            <span onclick="doSearch('Desk Mat')">Desk Mat</span>
+            <span onclick="doSearch('Poster')">Poster</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Wishlist Icon -->
-      <a href="profile.html#wishlist" class="nav-item" style="position: relative; color: var(--text-light); text-decoration: none; font-size: 18px;">
+      <!-- Wishlist -->
+      <a href="profile.html#wishlist" class="nav-icon-btn" title="Wishlist">
         <i class="fa-solid fa-heart"></i>
-        <span id="wishlistCount" style="background: #ef4444; color: white; border-radius: 50%; width: 18px; height: 18px; display: none; justify-content: center; align-items: center; font-size: 10px; font-weight: bold; position: absolute; top: -8px; right: -12px;">0</span>
+        <span id="wishlistCount" class="nav-badge" style="display:none;">0</span>
       </a>
 
-      <!-- User Profile Icon -->
-      <a href="profile.html" class="nav-item" data-page="profile.html" style="color: var(--text-light); text-decoration: none; font-size: 18px;">
+      <!-- Profile -->
+      <a href="profile.html" class="nav-icon-btn" data-page="profile.html" title="Profile">
         <i class="fa-solid fa-user"></i>
       </a>
 
-      <!-- Cart Icon -->
-      <a href="cart.html" class="nav-item" data-page="cart.html" style="position: relative; display: flex; align-items: center; gap: 5px; color: var(--text-light); text-decoration: none;">
-        <i class="fa-solid fa-cart-shopping" style="font-size: 18px;"></i>
-        <span id="cartCount" style="background: var(--primary); color: white; border-radius: 50%; width: 20px; height: 20px; display: flex; justify-content: center; align-items: center; font-size: 12px; font-weight: bold; position: absolute; top: -10px; right: -15px;">0</span>
+      <!-- Cart -->
+      <a href="cart.html" class="nav-icon-btn" data-page="cart.html" title="Cart">
+        <i class="fa-solid fa-cart-shopping"></i>
+        <span id="cartCount" class="nav-badge">0</span>
       </a>
 
-      <!-- Hamburger (Mobile) -->
-      <button id="hamburger-btn" style="display:none;"><i class="fa-solid fa-bars"></i></button>
-    </div>
+      <!-- Hamburger -->
+      <button id="hamburger-btn" class="hamburger-btn">
+        <i class="fa-solid fa-bars"></i>
+      </button>
 
+    </div>
   </div>
 </header>
 
-<!-- Mobile Nav Overlay -->
+<!-- MOBILE NAV OVERLAY -->
 <div class="mobile-nav-overlay" id="mobileNavOverlay">
   <button class="mobile-nav-close"><i class="fa-solid fa-xmark"></i></button>
-  <a href="index.html">Home</a>
-  <a href="shop.html">Shop</a>
-  <a href="offers.html" class="text-gradient" style="font-weight:bold;">Offers 🔥</a>
-  <a href="forge.html" style="color: var(--primary); font-weight: bold;">The Forge</a>
-  <a href="syndicate.html">Syndicate</a>
-  <a href="contact.html">Contact</a>
-  <a href="profile.html">Profile</a>
-  <a href="cart.html">Cart</a>
+  <div class="mobile-nav-links">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="offers.html" class="text-gradient" style="font-weight:bold;">Offers 🔥</a>
+    <a href="customize.html" style="color:var(--primary);font-weight:bold;">Commission Art</a>
+    <a href="forge.html" style="color:var(--primary);font-weight:bold;">The Forge</a>
+    <a href="syndicate.html">Syndicate</a>
+    <a href="contact.html">Contact</a>
+    <hr style="border-color:rgba(255,255,255,0.1);margin:10px 0;">
+    <a href="profile.html"><i class="fa-solid fa-user" style="margin-right:8px;"></i>Profile</a>
+    <a href="cart.html"><i class="fa-solid fa-cart-shopping" style="margin-right:8px;"></i>Cart</a>
+  </div>
 </div>
+
+<!-- NAVBAR SCRIPTS -->
+<script>
+  // Hide announcement bar if previously closed
+  (function(){
+    if(sessionStorage.getItem('ann_closed')==='1'){
+      const bar = document.getElementById('announcementBar');
+      if(bar) bar.style.display='none';
+    }
+  })();
+
+  // Search functions
+  function showSearchSuggestions(){
+    loadRecentSearches();
+    document.getElementById('searchDropdown').classList.add('active');
+  }
+  function hideSearchSuggestions(){
+    document.getElementById('searchDropdown').classList.remove('active');
+  }
+  function loadRecentSearches(){
+    const recent = JSON.parse(localStorage.getItem('st_recent_searches') || '[]');
+    const el = document.getElementById('recentSearchesList');
+    if(!el) return;
+    if(recent.length === 0){
+      el.innerHTML = '<span style="color:var(--text-muted);font-size:12px;padding:4px 0;display:block;">No recent searches</span>';
+      return;
+    }
+    el.innerHTML = recent.slice(0,4).map(s =>
+      `<div class="search-recent-item" onclick="doSearch('${s}')">
+         <i class="fa-solid fa-clock-rotate-left"></i> ${s}
+       </div>`
+    ).join('');
+  }
+  function filterSearchSuggestions(val){
+    if(val.trim()) showSearchSuggestions();
+  }
+  function doSearch(term){
+    // Save to recent
+    let recent = JSON.parse(localStorage.getItem('st_recent_searches') || '[]');
+    recent = [term, ...recent.filter(s => s !== term)].slice(0, 5);
+    localStorage.setItem('st_recent_searches', JSON.stringify(recent));
+    location.href = 'shop.html?search=' + encodeURIComponent(term);
+  }
+  // Save search on Enter
+  document.addEventListener('DOMContentLoaded', () => {
+    const input = document.getElementById('navSearchInput');
+    if(input){
+      input.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' && input.value.trim()){
+          doSearch(input.value.trim());
+        }
+      });
+    }
+  });
+  </script>
