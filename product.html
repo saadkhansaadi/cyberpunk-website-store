@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SoulThread | Product Details</title>
   <link rel="icon" type="image/svg+xml" href="Assets/favicon.svg">
-
   <link rel="stylesheet" href="CSS/style.css">
   <link rel="stylesheet" href="CSS/responsive.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -17,7 +16,7 @@
       grid-template-columns: 1fr 1fr;
       gap: 60px;
       max-width: 1200px;
-      margin: 100px auto;
+      margin: 40px auto 100px;
       padding: 0 20px;
     }
     .product-image-container { position: relative; overflow: hidden; border-radius: 20px; }
@@ -48,9 +47,7 @@
       color: white;
       box-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
     }
-    .frame-selector {
-      display: flex; gap: 10px; flex-wrap: wrap;
-    }
+    .frame-selector { display: flex; gap: 10px; flex-wrap: wrap; }
     .frame-btn {
       padding: 10px 18px; border-radius: 8px;
       border: 1px solid var(--border-light);
@@ -61,10 +58,46 @@
       border-color: var(--accent); color: var(--accent);
       background: rgba(16,185,129,0.1);
     }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin-bottom: 30px;
+    }
+    .trust-item {
+      text-align: center;
+      padding: 15px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 12px;
+      border: 1px solid var(--border-light);
+    }
+    .trust-item i { font-size: 20px; margin-bottom: 8px; display: block; }
+    .trust-item p { font-size: 11px; color: var(--text-muted); margin: 0; line-height: 1.4; }
+    .breadcrumb {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 30px 20px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+      flex-wrap: wrap;
+    }
+    .breadcrumb a {
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb i { font-size: 10px; }
     @media (max-width: 900px) {
-      .product-grid {
-        grid-template-columns: 1fr;
-      }
+      .product-grid { grid-template-columns: 1fr; }
+      .trust-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 480px) {
+      .trust-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .trust-item { padding: 10px 5px; }
     }
   </style>
 </head>
@@ -73,6 +106,17 @@
 
   <!-- DYNAMIC NAVBAR PLACEHOLDER -->
   <div id="navbar-placeholder"></div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb" id="breadcrumb" style="display:none;">
+    <a href="index.html">Home</a>
+    <i class="fa-solid fa-chevron-right"></i>
+    <a href="shop.html">Shop</a>
+    <i class="fa-solid fa-chevron-right"></i>
+    <span id="breadcrumb-category"></span>
+    <i class="fa-solid fa-chevron-right"></i>
+    <span id="breadcrumb-product" style="color:var(--text-light);"></span>
+  </div>
 
   <!-- PRODUCT CONTAINER -->
   <div id="product-container" style="min-height: 70vh;">
@@ -91,7 +135,6 @@
   <!-- DYNAMIC FOOTER PLACEHOLDER -->
   <div id="footer-placeholder"></div>
 
-  <!-- Scripts -->
   <script src="JS files/main.js"></script>
   <script src="JS files/products.js"></script>
   <script src="JS files/cart.js"></script>
@@ -106,19 +149,35 @@
 
       if (!product) {
         container.innerHTML = `
-          <div style="text-align: center; padding: 150px;">
-            <h1 style="color: #ef4444; font-size: 48px;"><i class="fa-solid fa-triangle-exclamation"></i> 404</h1>
+          <div style="text-align:center;padding:150px 20px;">
+            <h1 style="color:#ef4444;font-size:48px;">
+              <i class="fa-solid fa-triangle-exclamation"></i> 404
+            </h1>
             <h2>Asset Not Found</h2>
-            <p style="color: var(--text-muted); margin-bottom: 30px;">The requested item does not exist in our databanks.</p>
+            <p style="color:var(--text-muted);margin-bottom:30px;">
+              The requested item does not exist in our databanks.
+            </p>
             <a href="shop.html" class="btn-pro btn-outline">Return to Shop</a>
           </div>`;
         return;
       }
 
-      // Update page title
+      // Page title
       document.title = `SoulThread | ${product.name}`;
 
-      // Sizes / Parameters
+      // Breadcrumb
+      const breadcrumb = document.getElementById('breadcrumb');
+      const bcCat = document.getElementById('breadcrumb-category');
+      const bcProd = document.getElementById('breadcrumb-product');
+      if (breadcrumb) {
+        breadcrumb.style.display = 'flex';
+        if (bcCat) {
+          bcCat.innerHTML = `<a href="shop.html?cat=${encodeURIComponent(product.category)}" style="color:var(--text-muted);text-decoration:none;" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--text-muted)'">${product.category}</a>`;
+        }
+        if (bcProd) bcProd.textContent = product.name;
+      }
+
+      // Sizes
       let sizesHTML = '';
       if (product.sizes && product.product_type !== 'service') {
         product.sizes.forEach((size, index) => {
@@ -126,71 +185,148 @@
         });
       }
 
-      // Frame selector for prints
+      // Frame selector
       let frameHTML = '';
       if (product.frame_options) {
-        frameHTML = `<div style="margin-bottom:30px;">
-          <h4 style="margin-bottom:15px;color:var(--text-light);">Frame Option:</h4>
-          <div class="frame-selector">
-            ${product.frame_options.map((f, i) => `<button class="frame-btn ${i === 0 ? 'selected' : ''}" onclick="selectFrame(this)">${f}</button>`).join('')}
-          </div>
-        </div>`;
+        frameHTML = `
+          <div style="margin-bottom:30px;">
+            <h4 style="margin-bottom:15px;color:var(--text-light);">Frame Option:</h4>
+            <div class="frame-selector">
+              ${product.frame_options.map((f, i) => 
+                `<button class="frame-btn ${i === 0 ? 'selected' : ''}" onclick="selectFrame(this)">${f}</button>`
+              ).join('')}
+            </div>
+          </div>`;
       }
 
       // Features
       let featuresHTML = '';
       product.features.forEach(feat => {
-        featuresHTML += `<li style="margin-bottom:10px;"><i class="fa-solid fa-check" style="color:var(--primary);margin-right:10px;"></i>${feat}</li>`;
+        featuresHTML += `
+          <li style="margin-bottom:10px;">
+            <i class="fa-solid fa-check" style="color:var(--primary);margin-right:10px;"></i>${feat}
+          </li>`;
       });
 
       // Digital art badges
       let badgesHTML = '';
       if (product.product_type === 'print' || product.product_type === 'service') {
-        badgesHTML = `<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
-          <span class="art-badge badge-digital"><i class="fa-solid fa-pen-nib"></i> Created Digitally</span>
-          ${product.resolution ? `<span class="art-badge badge-resolution">${product.resolution} · ${product.dpi}DPI</span>` : ''}
-          <span class="art-badge badge-color-profile"><i class="fa-solid fa-circle-half-stroke"></i> Adobe RGB</span>
-        </div>`;
+        badgesHTML = `
+          <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;">
+            <span class="art-badge badge-digital">
+              <i class="fa-solid fa-pen-nib"></i> Created Digitally
+            </span>
+            ${product.resolution ? `<span class="art-badge badge-resolution">${product.resolution} · ${product.dpi}DPI</span>` : ''}
+            <span class="art-badge badge-color-profile">
+              <i class="fa-solid fa-circle-half-stroke"></i> Adobe RGB
+            </span>
+          </div>`;
       }
 
-      // CTA
-      const priceDisplay = product.starting_price ? `From $${product.starting_price.toFixed(2)}` : `$${product.price.toFixed(2)}`;
-      const ctaText = product.product_type === 'service' ? 'REQUEST COMMISSION' : 'ADD TO CART';
+      // Price + CTA
+      const priceDisplay = product.starting_price
+        ? `From $${product.starting_price.toFixed(2)}`
+        : `$${product.price.toFixed(2)}`;
+
+      const ctaText = product.product_type === 'service'
+        ? 'REQUEST COMMISSION'
+        : 'ADD TO CART';
+
       const ctaAction = product.product_type === 'service'
         ? `location.href='customize.html'`
         : `addToCartDetailed('${product.id}', '${product.name}', ${product.price}, '${product.image}', '${product.product_type}')`;
 
+      // Turnaround info for services
+      let serviceInfoHTML = '';
+      if (product.product_type === 'service') {
+        serviceInfoHTML = `
+          <div style="display:flex;gap:20px;margin-bottom:25px;flex-wrap:wrap;">
+            <div style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;">
+              <i class="fa-solid fa-clock" style="color:var(--primary);"></i>
+              <span>${product.turnaround_days} day turnaround</span>
+            </div>
+            <div style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:14px;">
+              <i class="fa-solid fa-rotate" style="color:var(--accent);"></i>
+              <span>${product.revision_rounds} revision rounds</span>
+            </div>
+          </div>`;
+      }
+
+      // Final HTML
       container.innerHTML = `
         <div class="product-grid reveal active">
+
+          <!-- LEFT: Image -->
           <div class="product-image-container" onclick="this.classList.toggle('zoomed')">
             <img src="${product.image}" alt="${product.name}">
           </div>
-          <div class="product-details">
-            <span style="color:var(--primary);text-transform:uppercase;letter-spacing:2px;font-size:14px;font-weight:bold;">${product.category}</span>
-            <h1 style="font-size:42px;margin:10px 0;">${product.name}</h1>
-            ${badgesHTML}
-            <p style="font-size:32px;color:var(--text-light);font-weight:300;margin-bottom:25px;">${priceDisplay}</p>
-            <p style="color:var(--text-muted);line-height:1.6;font-size:16px;margin-bottom:30px;">${product.description}</p>
 
-            ${sizesHTML ? `<div style="margin-bottom:30px;">
-              <h4 style="margin-bottom:15px;color:var(--text-light);">Select Parameters:</h4>
-              <div style="display:flex;gap:15px;flex-wrap:wrap;" id="size-selector">${sizesHTML}</div>
-            </div>` : ''}
+          <!-- RIGHT: Details -->
+          <div class="product-details">
+
+            <span style="color:var(--primary);text-transform:uppercase;letter-spacing:2px;font-size:14px;font-weight:bold;">
+              ${product.category}
+            </span>
+
+            <h1 style="font-size:clamp(28px,4vw,42px);margin:10px 0;">${product.name}</h1>
+
+            ${badgesHTML}
+
+            <p style="font-size:32px;color:var(--text-light);font-weight:300;margin-bottom:15px;">
+              ${priceDisplay}
+            </p>
+
+            <p style="color:var(--text-muted);line-height:1.6;font-size:16px;margin-bottom:25px;">
+              ${product.description}
+            </p>
+
+            ${serviceInfoHTML}
+
+            ${sizesHTML ? `
+              <div style="margin-bottom:30px;">
+                <h4 style="margin-bottom:15px;color:var(--text-light);">Select Parameters:</h4>
+                <div style="display:flex;gap:15px;flex-wrap:wrap;" id="size-selector">
+                  ${sizesHTML}
+                </div>
+              </div>` : ''}
 
             ${frameHTML}
 
-            <button class="btn-pro btn-glow" style="width:100%;padding:20px;font-size:18px;margin-bottom:40px;" onclick="${ctaAction}">
+            <!-- ADD TO CART BUTTON -->
+            <button class="btn-pro btn-glow"
+              style="width:100%;padding:20px;font-size:18px;margin-bottom:20px;"
+              onclick="${ctaAction}">
               <i class="fa-solid fa-cart-plus" style="margin-right:10px;"></i> ${ctaText}
             </button>
 
+            <!-- TRUST ICONS -->
+            <div class="trust-grid">
+              <div class="trust-item">
+                <i class="fa-solid fa-shield-halved" style="color:var(--accent);"></i>
+                <p>SECURE<br>PAYMENT</p>
+              </div>
+              <div class="trust-item">
+                <i class="fa-solid fa-truck-fast" style="color:var(--secondary);"></i>
+                <p>FREE SHIP<br>OVER $50</p>
+              </div>
+              <div class="trust-item">
+                <i class="fa-solid fa-rotate-left" style="color:var(--primary);"></i>
+                <p>14-DAY<br>RETURNS</p>
+              </div>
+            </div>
+
+            <!-- SPECIFICATIONS -->
             <div style="border-top:1px solid rgba(255,255,255,0.1);padding-top:30px;">
               <h4 style="margin-bottom:15px;">Specifications</h4>
-              <ul style="list-style:none;padding:0;color:var(--text-muted);">${featuresHTML}</ul>
+              <ul style="list-style:none;padding:0;color:var(--text-muted);">
+                ${featuresHTML}
+              </ul>
             </div>
+
           </div>
         </div>`;
 
-      // Render related products
+      // Related products
       renderRelated(product);
     });
 
@@ -207,7 +343,9 @@
     function addToCartDetailed(id, name, price, image, productType) {
       const selectedSizeBtn = document.querySelector('.size-btn.selected');
       const size = selectedSizeBtn ? selectedSizeBtn.innerText : '';
-      const itemName = size && size !== 'One Size' && size !== 'Digital Delivery' ? `${name} - ${size}` : name;
+      const itemName = size && size !== 'One Size' && size !== 'Digital Delivery'
+        ? `${name} - ${size}`
+        : name;
 
       let cart = JSON.parse(localStorage.getItem('soulthread_cart')) || [];
       const existingItem = cart.find(item => item.name === itemName);
@@ -224,15 +362,24 @@
     }
 
     function renderRelated(product) {
-      const related = products.filter(p => p.category === product.category && p.id !== product.id).slice(0, 4);
+      const related = products
+        .filter(p => p.category === product.category && p.id !== product.id)
+        .slice(0, 4);
+
       if (related.length === 0) return;
 
       document.getElementById('related-section').style.display = 'block';
       const grid = document.getElementById('related-grid');
+
       related.forEach(prod => {
-        const price = prod.starting_price ? `From $${prod.starting_price.toFixed(2)}` : `$${prod.price.toFixed(2)}`;
+        const price = prod.starting_price
+          ? `From $${prod.starting_price.toFixed(2)}`
+          : `$${prod.price.toFixed(2)}`;
+
         grid.innerHTML += `
-          <div class="pro-card reveal" onclick="location.href='product.html?id=${prod.id}'" style="cursor:pointer;">
+          <div class="pro-card reveal" 
+            onclick="location.href='product.html?id=${prod.id}'" 
+            style="cursor:pointer;">
             <img src="${prod.image}" alt="${prod.name}">
             <h3>${prod.name}</h3>
             <p style="color:var(--text-light);font-size:18px;font-weight:600;">${price}</p>
@@ -242,4 +389,3 @@
   </script>
 </body>
 </html>
-
